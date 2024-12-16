@@ -1,0 +1,22 @@
+:root {
+  font-family: system-ui, Arial, sans-serif;
+  line-height: 1.5;
+  color-scheme: light dark;
+}
+
+a {
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+  background-color: light-dark(#eee, #333);
+}
+
+button {
+  cursor: pointer;
+}
