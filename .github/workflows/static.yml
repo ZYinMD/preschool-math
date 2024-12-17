@@ -1,6 +1,8 @@
-# instructions for Github Actions to deploy static site to GitHub Pages.
+# config file for Github Actions to serve static site from the dist folder to GitHub Pages
 
-# To find docs on how to do it, first go to github repo > settings > pages > Source > Github actions > Static HTML > Configure, it'll show you a template yaml. Then modify it by checking https://vite.dev/guide/static-deploy#github-pages or google "vite deploy static sites". Can also google "pnpm github actions" if encounter pnpm issues.
+# To find docs on how to do it, first go to the repo on github > settings > pages > Source > Github actions > Static HTML > Configure, it'll show you a template yaml. Then modify it by checking https://vite.dev/guide/static-deploy#github-pages (or just google "vite deploy static sites"). Can also google "pnpm github actions" if encounter pnpm issues.
+
+# Note: it can be live at either (A) zyinmd.github.io/foo (the default) or (B) foo.zyinmd.me (if you configure custom domain), but the two can't work at the same time, due to how github pages serves the content from a sub directory. If you choose A, the aforementioned vite doc will tell you to add an extra "base: /foo/" in vite.config.ts. If you choose B, github pages will redirect traffic from A to B. I chose B because the url looks better and one less extra step in vite config, but the drawback is I can't test it using url A before setting up custom domain because vite config is never set. I can only test with url B which requires the custom domain to be set up first.
 
 name: Deploy static content to Pages
 
