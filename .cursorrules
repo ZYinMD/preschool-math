@@ -1,0 +1,18 @@
+
+Use Svelte5, the latest version of Svelte, which introduced runes, e.g. $state, $derived, etc. Svelte5 doc:
+
+https://svelte.dev/docs/svelte/overview
+
+Use TypeScript.
+
+Use Svelte's built-in transition and animation features
+
+Use .svelte files for Svelte components, PascalCase for filenames of the components.
+
+All states ($state) and derived states ($derived) are exported from src/states/states.svelte.ts
+
+Standalone .ts files can be used for logic.
+
+Standalone .svelte.ts files can be used for logic when runes need to be used in those files.
+
+This app is a simple math game for preschool kids. There are two main views: the game view and the settings view. Before each new game, the settings view is shown to configure the game. In the game view, if "New" button is clicked, the game is reset into the settings view to be started over.
