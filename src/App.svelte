@@ -1,12 +1,13 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte";
+  import { states } from "./states/states.svelte";
+  import Game from "./Game/Game.svelte";
+  import Settings from "./Settings/Settings.svelte";
 </script>
 
-<main>
-  <div class="card">
-    <Counter />
-  </div>
-</main>
-
-<style>
-</style>
+<div>
+  {#if states.view === "game"}
+    <Game />
+  {:else}
+    <Settings />
+  {/if}
+</div>

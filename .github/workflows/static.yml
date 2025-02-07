@@ -46,7 +46,7 @@ jobs:
           node-version: 20
           cache: "pnpm" # I did this by trial and error, not knowing what it does
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile # just "pnpm install" is also fine. I think --frozen-lockfile ensures strick versions per lockfile.
+        run: pnpm install --frozen-lockfile # just "pnpm install" is also fine. I think --frozen-lockfile ensures strict versions according to lockfile.
       - name: Build
         run: pnpm run build
       - name: Setup Pages
