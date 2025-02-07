@@ -4,10 +4,13 @@
   import Settings from "./Settings/Settings.svelte";
 </script>
 
-<div>
+<div class="component">
   {#if states.view === "game"}
     <Game />
   {:else}
     <Settings />
   {/if}
 </div>
+
+<style>
+</style>

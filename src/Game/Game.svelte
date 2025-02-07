@@ -1,13 +1,15 @@
 <script lang="ts">
   import QuestionBar from "../lib/QuestionBar/QuestionBar.svelte";
+  import KeyPad from "../lib/KayPad/KeyPad.svelte";
   import { states } from "../states/states.svelte";
-  const currentQuestion = states.currentQuestion;
+  const question = states.currentQuestion.question;
 </script>
 
 <!-- @component the game view -->
 <div class="component">
-  <QuestionBar a={currentQuestion[0]} b={currentQuestion[1]} />
   <button on:click={() => (states.view = "settings")}>New</button>
+  <QuestionBar a={question[0]} b={question[1]} />
+  <KeyPad />
 </div>
 
 <style>

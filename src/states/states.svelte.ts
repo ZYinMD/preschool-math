@@ -77,8 +77,13 @@ const allQuestions = {
 };
 
 export const states = $state({
-  view: "settings" as "game" | "settings",
-  currentQuestion: [0, 0] as Question,
+  view: "game" as "game" | "settings",
+  currentQuestion: {
+    question: [0, 0] as Question,
+    answer: [0, 0, 0] as [number, number, number],
+    hasTriedTimes: 0,
+  },
+  kayPadDisabled: false, // all buttons are disabled for 1 second after question submission, animation happens in this second
   settings: {
     includedQuestions: {
       two: true,
