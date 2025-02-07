@@ -78,7 +78,7 @@ const allQuestions = {
 
 export const states = $state({
   view: "settings" as "game" | "settings",
-  currentQuestion: [2, 2] as Question | null,
+  currentQuestion: [0, 0] as Question,
   settings: {
     includedQuestions: {
       two: true,
