@@ -78,15 +78,19 @@ const allQuestions = {
 
 export const states = $state({
   view: "settings" as "game" | "settings",
-  includedQuestions: {
-    two: true,
-    three: true,
-    four: true,
-    five: true,
-    six: true,
-    seven: true,
-    eight: true,
-    nine: true,
+  currentQuestion: [2, 2] as Question | null,
+  settings: {
+    includedQuestions: {
+      two: true,
+      three: true,
+      four: true,
+      five: true,
+      six: true,
+      seven: true,
+      eight: true,
+      nine: true,
+    },
+    numQuestions: 10,
   },
 });
 
