@@ -1,7 +1,7 @@
 <script lang="ts">
-  import AnswerBar from "../lib/AnswerBar/AnswerBar.svelte";
-  import KeyPad from "../lib/KayPad/KeyPad.svelte";
-  import TilesBar from "../lib/TilesBar/TilesBar.svelte";
+  import AnswerBar from "./AnswerBar/AnswerBar.svelte";
+  import KeyPad from "./KayPad/KeyPad.svelte";
+  import TilesBar from "./TilesBar/TilesBar.svelte";
   import { s } from "../states/states.svelte";
   const { a, b } = s.currentQuestion.value;
 </script>
