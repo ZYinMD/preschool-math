@@ -8,7 +8,7 @@
   const currentValue = states.currentQuestion.value[position];
   const currentAnswer = states.currentQuestion.answer[position];
   const isCorrect = currentValue === currentAnswer;
-  const isEmpty = currentValue === 0;
+  const isEmpty = currentAnswer === 0;
   const showColor = states.currentQuestion.showColor;
   const content = isEmpty ? "" : currentAnswer;
 </script>
@@ -56,6 +56,7 @@
     width: var(--number-square-size);
     height: var(--number-square-size);
     border-radius: var(--number-square-border-radius);
+    opacity: 0.9;
   }
   .grey {
     background-color: #eee;
