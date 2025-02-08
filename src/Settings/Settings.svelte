@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { derived, states } from "../states/states.svelte";
-  let { allowQuestionStartingWith } = states.settings;
+  import { d, s } from "../states/states.svelte";
+  let { allowQuestionStartingWith } = s.settings;
 
   /**
    * Stackoverflow answer of how to shuffle an array.
@@ -27,13 +27,8 @@
 <!-- @component the settings view -->
 <div class="component">
   <div>Number of questions:</div>
-  <input
-    type="range"
-    min="5"
-    max="30"
-    bind:value={states.settings.numQuestions}
-  />
-  <span>{states.settings.numQuestions}</span>
+  <input type="range" min="5" max="30" bind:value={s.settings.numQuestions} />
+  <span>{s.settings.numQuestions}</span>
   <div>Include questions starting with:</div>
   <div class="checkboxes">
     <label>
@@ -79,11 +74,11 @@
   <div>
     <button
       onclick={() => {
-        states.view = "game";
+        s.view = "game";
         // on click start, randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
-        states.questionsThisGame = shuffle(derived.allowedQuestions).slice(
+        s.questionsThisGame = shuffle(d.allowedQuestions).slice(
           0,
-          states.settings.numQuestions
+          s.settings.numQuestions
         );
       }}>Start</button
     >

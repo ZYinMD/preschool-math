@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { states } from "../../states/states.svelte";
+  import { s } from "../../states/states.svelte";
 
   type Props = {
     position: "a" | "b" | "c";
   };
   let { position }: Props = $props();
-  const currentValue = states.currentQuestion.value[position];
-  const currentAnswer = states.currentQuestion.answer[position];
+  const currentValue = s.currentQuestion.value[position];
+  const currentAnswer = s.currentQuestion.answer[position];
   const isCorrect = currentValue === currentAnswer;
   const isEmpty = currentAnswer === 0;
-  const showColor = states.currentQuestion.showColor;
+  const showColor = s.currentQuestion.showColor;
   const content = isEmpty ? "" : currentAnswer;
 </script>
 

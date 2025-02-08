@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { states } from "../../states/states.svelte";
+  import { s } from "../../states/states.svelte";
 
   let { buttonNumber }: { buttonNumber: number } = $props();
 
   async function handleKeyPress(buttonNumber: number) {
-    if (states.currentQuestion.answer.a === 0) {
-      states.currentQuestion.answer.a = buttonNumber;
-    } else if (states.currentQuestion.answer.b === 0) {
-      states.currentQuestion.answer.b = buttonNumber;
-    } else if (states.currentQuestion.answer.c === 0) {
-      states.currentQuestion.answer.c = buttonNumber;
+    if (s.currentQuestion.answer.a === 0) {
+      s.currentQuestion.answer.a = buttonNumber;
+    } else if (s.currentQuestion.answer.b === 0) {
+      s.currentQuestion.answer.b = buttonNumber;
+    } else if (s.currentQuestion.answer.c === 0) {
+      s.currentQuestion.answer.c = buttonNumber;
     }
   }
 </script>
 
 <!-- I could just use pointerdown and pointerup if not for the safari 12 on my son's old ipad -->
 <button
-  disabled={states.kayPadDisabled}
+  disabled={s.kayPadDisabled}
   onclick={() => {
     console.debug("clicked", buttonNumber);
     handleKeyPress(buttonNumber);

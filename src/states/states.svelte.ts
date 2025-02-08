@@ -76,7 +76,10 @@ const allQuestions = {
   ] as Question[],
 };
 
-export const states = $state({
+/**
+ * s = "states"
+ */
+export const s = $state({
   view: "game" as "game" | "settings",
   questionsThisGame: [] as Question[],
   currentQuestion: {
@@ -103,7 +106,7 @@ export const states = $state({
 
 const allowedQuestions = $derived.by(() => {
   const result: Question[] = [];
-  Object.entries(states.settings.allowQuestionStartingWith)
+  Object.entries(s.settings.allowQuestionStartingWith)
     .filter(([_key, allowed]) => allowed)
     .forEach(([key, _allowed]) => {
       result.push(...allQuestions[key as keyof typeof allQuestions]);
@@ -111,7 +114,10 @@ const allowedQuestions = $derived.by(() => {
   return result;
 });
 
-export const derived = {
+/**
+ * d = "derived states"
+ */
+export const d = {
   get allowedQuestions() {
     return allowedQuestions;
   },

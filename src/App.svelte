@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { states } from "./states/states.svelte";
   import Game from "./Game/Game.svelte";
   import Settings from "./Settings/Settings.svelte";
+  import { s } from "./states/states.svelte";
 </script>
 
 <div class="component">
-  {#if states.view === "game"}
+  {#if s.view === "game"}
     <Game />
   {:else}
     <Settings />
