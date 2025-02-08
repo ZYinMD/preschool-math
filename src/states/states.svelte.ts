@@ -82,7 +82,7 @@ const allQuestions = {
 export const s = $state({
   view: "game" as "game" | "settings",
   questionsThisGame: [] as Question[],
-  nowAt: 0, // the current index in questionsThisGame
+  nowAt: -1, // the current index in questionsThisGame
   currentAnswer: {
     value: { a: 0, b: 0, c: 0 }, // the correct value of a + b = c. C is derived from a and b but we put c here for convenience
     answer: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
@@ -105,6 +105,15 @@ export const s = $state({
   },
 });
 
+const currentQuestion = $derived.by(() => {
+  if (s.nowAt === -1) {
+    return { a: 0, b: 0, c: 0 };
+  }
+  const [a, b] = s.questionsThisGame[s.nowAt];
+  const c = a + b;
+  return { a, b, c };
+});
+
 /**
  * The pool of questions that are allowed to be asked
  */
@@ -124,5 +133,8 @@ const questionPool = $derived.by(() => {
 export const d = {
   get questionPool() {
     return questionPool;
+  },
+  get currentQuestion() {
+    return currentQuestion;
   },
 };

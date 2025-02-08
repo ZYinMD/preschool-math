@@ -1,16 +1,17 @@
 <script lang="ts">
-  import { s } from "../../states/states.svelte";
+  import { d, s } from "../../states/states.svelte";
 
   type Props = {
     position: "a" | "b" | "c";
   };
   let { position }: Props = $props();
-  const currentValue = s.currentAnswer.value[position];
-  const currentAnswer = s.currentAnswer.answer[position];
-  const isCorrect = currentValue === currentAnswer;
-  const isEmpty = currentAnswer === 0;
+  const currentQuestion = d.currentQuestion;
+  const correctAnswer = currentQuestion[position];
+  const playerAnswer = s.currentAnswer.answer[position];
+  const isCorrect = correctAnswer === playerAnswer;
+  const isEmpty = playerAnswer === 0;
   const showColor = s.currentAnswer.showColor;
-  const content = isEmpty ? "" : currentAnswer;
+  const content = isEmpty ? "" : playerAnswer;
 </script>
 
 <!-- @component the square box that starts empty and can be filled with a number -->
