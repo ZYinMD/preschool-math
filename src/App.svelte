@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Game from "./Game/Game.svelte";
+  import Game from "./GameBoard/GameBoard.svelte";
   import Settings from "./GameSettings/GameSettings.svelte";
   import { s } from "./states/states.svelte";
 </script>
