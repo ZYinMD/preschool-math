@@ -5,11 +5,11 @@
     position: "a" | "b" | "c";
   };
   let { position }: Props = $props();
-  const currentValue = s.currentQuestion.value[position];
-  const currentAnswer = s.currentQuestion.answer[position];
+  const currentValue = s.currentAnswer.value[position];
+  const currentAnswer = s.currentAnswer.answer[position];
   const isCorrect = currentValue === currentAnswer;
   const isEmpty = currentAnswer === 0;
-  const showColor = s.currentQuestion.showColor;
+  const showColor = s.currentAnswer.showColor;
   const content = isEmpty ? "" : currentAnswer;
 </script>
 

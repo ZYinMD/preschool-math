@@ -76,7 +76,7 @@
       onclick={() => {
         s.view = "game";
         // on click start, randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
-        s.questionsThisGame = shuffle(d.allowedQuestions).slice(
+        s.questionsThisGame = shuffle(d.questionPool).slice(
           0,
           s.settings.numQuestions
         );

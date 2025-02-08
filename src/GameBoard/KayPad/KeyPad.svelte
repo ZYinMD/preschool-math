@@ -1,7 +1,7 @@
 <script lang="ts">
   import { s } from "../../states/states.svelte";
   import OneButton from "./OneKey.svelte";
-  const { c } = s.currentQuestion.value;
+  const { c } = s.currentAnswer.value;
   $: numButtons = c > 10 ? 20 : 10; // show 10 buttons if < 10, else show 20 buttons if < 20
   $: numbers = Array(numButtons)
     .fill(null)

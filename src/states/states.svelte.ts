@@ -82,7 +82,8 @@ const allQuestions = {
 export const s = $state({
   view: "game" as "game" | "settings",
   questionsThisGame: [] as Question[],
-  currentQuestion: {
+  nowAt: 0, // the current index in questionsThisGame
+  currentAnswer: {
     value: { a: 0, b: 0, c: 0 }, // the correct value of a + b = c. C is derived from a and b but we put c here for convenience
     answer: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
     hasTriedTimes: 0,
@@ -104,7 +105,10 @@ export const s = $state({
   },
 });
 
-const allowedQuestions = $derived.by(() => {
+/**
+ * The pool of questions that are allowed to be asked
+ */
+const questionPool = $derived.by(() => {
   const result: Question[] = [];
   Object.entries(s.settings.allowQuestionStartingWith)
     .filter(([_key, allowed]) => allowed)
@@ -118,7 +122,7 @@ const allowedQuestions = $derived.by(() => {
  * d = "derived states"
  */
 export const d = {
-  get allowedQuestions() {
-    return allowedQuestions;
+  get questionPool() {
+    return questionPool;
   },
 };
