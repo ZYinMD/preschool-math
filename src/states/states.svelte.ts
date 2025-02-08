@@ -79,9 +79,10 @@ const allQuestions = {
 export const states = $state({
   view: "game" as "game" | "settings",
   currentQuestion: {
-    question: [0, 0] as Question,
-    answer: [0, 0, 0] as [number, number, number],
+    value: { a: 0, b: 0, c: 0 }, // the correct value of a + b = c. C is derived from a and b but we put c here for convenience
+    answer: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
     hasTriedTimes: 0,
+    showColor: false, // when true (briefly), show green background on the answer cloze if answered right, red if wrong. When false (most of the time), will show grey background, and transparent when empty
   },
   kayPadDisabled: false, // all buttons are disabled for 1 second after question submission, animation happens in this second
   settings: {

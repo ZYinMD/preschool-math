@@ -4,12 +4,12 @@
   let { buttonNumber }: { buttonNumber: number } = $props();
 
   async function handleKeyPress(buttonNumber: number) {
-    if (states.currentQuestion.answer[0] === 0) {
-      states.currentQuestion.answer[0] = buttonNumber;
-    } else if (states.currentQuestion.answer[1] === 0) {
-      states.currentQuestion.answer[1] = buttonNumber;
-    } else if (states.currentQuestion.answer[2] === 0) {
-      states.currentQuestion.answer[2] = buttonNumber;
+    if (states.currentQuestion.answer.a === 0) {
+      states.currentQuestion.answer.a = buttonNumber;
+    } else if (states.currentQuestion.answer.b === 0) {
+      states.currentQuestion.answer.b = buttonNumber;
+    } else if (states.currentQuestion.answer.c === 0) {
+      states.currentQuestion.answer.c = buttonNumber;
     }
   }
 </script>
