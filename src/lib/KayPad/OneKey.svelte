@@ -31,18 +31,18 @@
   button {
     /* remove the grey outline on tap on iOS safari? */
     -webkit-tap-highlight-color: #0000;
-    width: var(--number-button-size);
-    height: var(--number-button-size);
+    width: var(--number-square-size);
+    height: var(--number-square-size);
     margin: 1vw;
     padding: 0;
     display: grid;
     place-items: center;
     background-color: LightGreen;
     opacity: 0.9;
-    font-size: var(--number-button-font-size);
+    font-size: var(--number-square-font-size);
     color: #0008;
     border: none;
-    border-radius: var(--number-button-border-radius);
+    border-radius: var(--number-square-border-radius);
   }
   /* make the numbers not selectable. This is an issue if it's pressed for too long on touch device */
   button:active {

@@ -2,9 +2,9 @@
   font-family: system-ui, Arial, sans-serif;
   line-height: 1.5;
   color-scheme: light dark;
-  --number-button-size: 7.5vw;
-  --number-button-border-radius: 20%;
-  --number-button-font-size: 3vw;
+  --number-square-size: 7.5vw;
+  --number-square-border-radius: 20%;
+  --number-square-font-size: 3vw;
 }
 
 a {
