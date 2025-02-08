@@ -78,6 +78,7 @@ const allQuestions = {
 
 export const states = $state({
   view: "game" as "game" | "settings",
+  questionsThisGame: [] as Question[],
   currentQuestion: {
     value: { a: 0, b: 0, c: 0 }, // the correct value of a + b = c. C is derived from a and b but we put c here for convenience
     answer: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
@@ -86,7 +87,7 @@ export const states = $state({
   },
   kayPadDisabled: false, // all buttons are disabled for 1 second after question submission, animation happens in this second
   settings: {
-    includedQuestions: {
+    allowQuestionStartingWith: {
       two: true,
       three: true,
       four: true,
@@ -100,12 +101,18 @@ export const states = $state({
   },
 });
 
-// export const includedQuestions = $derived.by(() => {
-//   const result: Question[] = [];
-//   Object.entries(inclusions).forEach(([key, value]) => {
-//     if (value) result.push(...allQuestions[key as keyof typeof allQuestions]);
-//   });
-//   return result;
-// });
+const allowedQuestions = $derived.by(() => {
+  const result: Question[] = [];
+  Object.entries(states.settings.allowQuestionStartingWith)
+    .filter(([_key, allowed]) => allowed)
+    .forEach(([key, _allowed]) => {
+      result.push(...allQuestions[key as keyof typeof allQuestions]);
+    });
+  return result;
+});
 
-// export const testDerived = $derived(1);
+export const derived = {
+  get allowedQuestions() {
+    return allowedQuestions;
+  },
+};
