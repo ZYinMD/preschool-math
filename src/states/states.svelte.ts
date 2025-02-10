@@ -137,3 +137,33 @@ export const d = {
     return currentQuestion;
   },
 };
+
+export function restartGame() {
+  /**
+   * Stackoverflow answer of how to shuffle an array.
+   * This function first makes a copy of the array, then mutates the copy, then returns it.
+   */
+  function shuffle(array: any[]) {
+    const result = [...array];
+    let currentIndex = result.length;
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      // And swap it with the current element.
+      [result[currentIndex], result[randomIndex]] = [
+        result[randomIndex],
+        result[currentIndex],
+      ];
+    }
+    return result;
+  }
+
+  // randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
+  s.questionsThisGame = shuffle(d.questionPool).slice(
+    0,
+    s.settings.numQuestions
+  );
+  s.nowAt = 0;
+}
