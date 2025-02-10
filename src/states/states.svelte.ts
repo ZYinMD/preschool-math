@@ -174,14 +174,14 @@ export function restartGame() {
 export async function submitAnswer() {
   s.currentAnswer.showColor = true;
   s.kayPadDisabled = true;
-  await sleep(1000);
-  s.currentAnswer.showColor = false;
-  s.currentAnswer.values = { a: 0, b: 0, c: 0 }; // reset the answer
-  s.kayPadDisabled = false;
   const answerIsRight =
     s.currentAnswer.values.a === d.currentQuestion.a &&
     s.currentAnswer.values.b === d.currentQuestion.b &&
     s.currentAnswer.values.c === d.currentQuestion.c;
+  await sleep(1000);
+  s.currentAnswer.showColor = false;
+  s.currentAnswer.values = { a: 0, b: 0, c: 0 }; // reset the answer
+  s.kayPadDisabled = false;
   if (answerIsRight) {
     if (s.nowAt === s.questionsThisGame.length - 1) s.allDone = true;
     else s.nowAt++;
