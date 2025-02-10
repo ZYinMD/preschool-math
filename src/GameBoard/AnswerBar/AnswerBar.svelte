@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     gap: var(--number-square-font-size);
+    margin-bottom: clamp(5px, 4vh, 50px);
   }
   .operator {
     font-size: calc(var(--number-square-font-size) * 1.4);

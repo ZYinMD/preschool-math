@@ -25,6 +25,7 @@
       /
       auto;
     place-items: center;
+    margin-bottom: clamp(5px, 4vh, 50px);
   }
   .tiles {
     grid-area: only;

@@ -10,8 +10,9 @@
 
 <style>
   .container {
-    grid-area: answer-buttons;
+    align-content: start;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    margin-bottom: clamp(5px, 3vh, 50px);
   }
 </style>

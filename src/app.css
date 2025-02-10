@@ -5,7 +5,7 @@
   --number-square-size: 7.5vw;
   --number-square-border-radius: 20%;
   --number-square-font-size: 3vw;
-  --tiles-bar-width: min(90vw, 500px);
+  --tiles-bar-width: min(87vw, 500px);
 }
 
 a {
@@ -15,10 +15,10 @@ a {
 
 body {
   margin: 0;
+  overflow: hidden;
   display: flex;
-  place-items: center;
-  min-height: 100vh;
-  background-color: light-dark(white, #333);
+  justify-content: center;
+  align-items: center;
 }
 
 button {
