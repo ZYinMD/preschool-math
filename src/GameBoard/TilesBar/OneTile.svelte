@@ -10,7 +10,7 @@
 
 <style>
   .box {
-    --box-width: min(4.5vw, 25px);
+    --box-width: calc(var(--tiles-bar-width) / 20);
     width: var(--box-width);
     height: calc(var(--box-width) * 1.4);
     border: 1px solid silver;
