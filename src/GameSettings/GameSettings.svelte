@@ -80,7 +80,7 @@
           0,
           s.settings.numQuestions
         );
-        console.debug("questionsThisGame:", s.questionsThisGame);
+        s.nowAt = 0;
       }}>Start</button
     >
   </div>

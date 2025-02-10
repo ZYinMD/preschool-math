@@ -18,7 +18,6 @@
 <button
   disabled={s.kayPadDisabled}
   onclick={() => {
-    console.debug("clicked", buttonNumber);
     handleKeyPress(buttonNumber);
   }}
 >

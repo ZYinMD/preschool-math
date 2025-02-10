@@ -5,21 +5,25 @@
     position: "a" | "b" | "c";
   };
   let { position }: Props = $props();
-  const currentQuestion = d.currentQuestion;
-  const correctAnswer = currentQuestion[position];
-  const playerAnswer = s.currentAnswer.values[position];
-  const isCorrect = correctAnswer === playerAnswer;
-  const isEmpty = playerAnswer === 0;
-  const showColor = s.currentAnswer.showColor;
-  const content = isEmpty ? "" : playerAnswer;
+
+  let showColor = $derived(s.currentAnswer.showColor);
+  let playerAnswer = $derived(s.currentAnswer.values[position]);
+  let isCorrect = $derived.by(() => {
+    const correctAnswer = d.currentQuestion[position];
+    return correctAnswer === playerAnswer;
+  });
+  let content = $derived.by(() => {
+    const isEmpty = playerAnswer === 0;
+    return isEmpty ? "" : playerAnswer;
+  });
 </script>
 
 <!-- @component the square box that starts empty and can be filled with a number -->
 {#key content}
   <div
     class="box"
-    class:green={isCorrect && showColor}
-    class:red={!isCorrect && showColor}
+    class:green={showColor && isCorrect}
+    class:red={showColor && !isCorrect}
     class:grey={!showColor}
   >
     {content}
