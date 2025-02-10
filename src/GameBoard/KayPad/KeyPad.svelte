@@ -1,15 +1,9 @@
 <script lang="ts">
-  import { d } from "../../states/states.svelte";
   import OneButton from "./OneKey.svelte";
-  const { c } = d.currentQuestion;
-  $: numButtons = c > 10 ? 20 : 10; // show 10 buttons if < 10, else show 20 buttons if < 20
-  $: numbers = Array(numButtons)
-    .fill(null)
-    .map((_item, index) => index + 1); // array of numbers from 1 to 10 (or 20)
 </script>
 
 <div class="container">
-  {#each numbers as i (i)}
+  {#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] as i (i)}
     <OneButton buttonNumber={i} />
   {/each}
 </div>

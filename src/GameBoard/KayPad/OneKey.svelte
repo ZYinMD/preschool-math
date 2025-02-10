@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { s } from "../../states/states.svelte";
+  import { s, submitAnswer } from "../../states/states.svelte";
 
   let { buttonNumber }: { buttonNumber: number } = $props();
 
   function handleKeyPress(buttonNumber: number) {
+    if (s.kayPadDisabled) return;
     if (s.currentAnswer.values.a === 0) {
       s.currentAnswer.values.a = buttonNumber;
     } else if (s.currentAnswer.values.b === 0) {
       s.currentAnswer.values.b = buttonNumber;
     } else if (s.currentAnswer.values.c === 0) {
       s.currentAnswer.values.c = buttonNumber;
-      // submit the answer:
-      s.currentAnswer.showColor = true;
+      submitAnswer();
     }
   }
 </script>

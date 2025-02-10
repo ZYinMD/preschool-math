@@ -1,3 +1,5 @@
+import { sleep } from "../lib/util/sleep";
+
 type Question = [number, number];
 
 const allQuestions = {
@@ -83,9 +85,9 @@ export const s = $state({
   view: "game" as "game" | "settings",
   questionsThisGame: [] as Question[],
   nowAt: -1, // the current index in questionsThisGame
+  allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: {
     values: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
-    hasTriedTimes: 0,
     showColor: false, // when true (briefly), show green background on the answer cloze if answered right, red if wrong. When false (most of the time), will show grey background, and transparent when empty
   },
   kayPadDisabled: false, // all buttons are disabled for 1 second after question submission, animation happens in this second
@@ -165,5 +167,23 @@ export function restartGame() {
     0,
     s.settings.numQuestions
   );
+  s.allDone = false;
   s.nowAt = 0;
+}
+
+export async function submitAnswer() {
+  s.currentAnswer.showColor = true;
+  s.kayPadDisabled = true;
+  await sleep(1000);
+  s.currentAnswer.showColor = false;
+  s.currentAnswer.values = { a: 0, b: 0, c: 0 }; // reset the answer
+  s.kayPadDisabled = false;
+  const answerIsRight =
+    s.currentAnswer.values.a === d.currentQuestion.a &&
+    s.currentAnswer.values.b === d.currentQuestion.b &&
+    s.currentAnswer.values.c === d.currentQuestion.c;
+  if (answerIsRight) {
+    if (s.nowAt === s.questionsThisGame.length - 1) s.allDone = true;
+    else s.nowAt++;
+  }
 }
