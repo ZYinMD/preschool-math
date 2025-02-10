@@ -84,8 +84,7 @@ export const s = $state({
   questionsThisGame: [] as Question[],
   nowAt: -1, // the current index in questionsThisGame
   currentAnswer: {
-    value: { a: 0, b: 0, c: 0 }, // the correct value of a + b = c. C is derived from a and b but we put c here for convenience
-    answer: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
+    values: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
     hasTriedTimes: 0,
     showColor: false, // when true (briefly), show green background on the answer cloze if answered right, red if wrong. When false (most of the time), will show grey background, and transparent when empty
   },

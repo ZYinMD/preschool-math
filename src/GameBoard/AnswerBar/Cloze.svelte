@@ -7,7 +7,7 @@
   let { position }: Props = $props();
   const currentQuestion = d.currentQuestion;
   const correctAnswer = currentQuestion[position];
-  const playerAnswer = s.currentAnswer.answer[position];
+  const playerAnswer = s.currentAnswer.values[position];
   const isCorrect = correctAnswer === playerAnswer;
   const isEmpty = playerAnswer === 0;
   const showColor = s.currentAnswer.showColor;
