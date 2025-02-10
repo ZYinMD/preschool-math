@@ -3,13 +3,15 @@
 
   let { buttonNumber }: { buttonNumber: number } = $props();
 
-  async function handleKeyPress(buttonNumber: number) {
+  function handleKeyPress(buttonNumber: number) {
     if (s.currentAnswer.values.a === 0) {
       s.currentAnswer.values.a = buttonNumber;
     } else if (s.currentAnswer.values.b === 0) {
       s.currentAnswer.values.b = buttonNumber;
     } else if (s.currentAnswer.values.c === 0) {
       s.currentAnswer.values.c = buttonNumber;
+      // submit the answer:
+      s.currentAnswer.showColor = true;
     }
   }
 </script>
