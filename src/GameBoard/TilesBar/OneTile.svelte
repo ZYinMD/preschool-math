@@ -1,6 +1,6 @@
 <script lang="ts">
-  const { a, b, nth } = $props();
-  const total = a + b;
+  let { a, b, nth } = $props();
+  let total = $derived(a + b);
 </script>
 
 <!-- @component One tile contained in a box in the question bar -->

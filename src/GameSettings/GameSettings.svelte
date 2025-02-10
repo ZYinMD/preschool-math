@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { d, restartGame, s } from "../states/states.svelte";
+  import { s } from "../states/states.svelte";
   let { allowQuestionStartingWith } = s.settings;
 </script>
 
@@ -53,7 +53,6 @@
   <div>
     <button
       onclick={() => {
-        restartGame();
         s.view = "game";
       }}>Start</button
     >
