@@ -1,11 +1,20 @@
 <script lang="ts">
+  import { scale } from "svelte/transition";
+
   let { a, b, nth } = $props();
   let total = $derived(a + b);
 </script>
 
 <!-- @component One tile contained in a box in the question bar -->
 <div class="box">
-  <div class="tile" class:a={nth <= a} class:b={nth <= total && nth > a}></div>
+  {#key total}
+    <div
+      in:scale={{ start: 0, duration: 100, delay: 20 * nth }}
+      class="tile"
+      class:a={nth <= a}
+      class:b={nth <= total && nth > a}
+    ></div>
+  {/key}
 </div>
 
 <style>
