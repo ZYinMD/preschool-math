@@ -24,15 +24,7 @@
 {/key}
 
 <style>
-  @keyframes rollout {
-    0% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: none;
-    }
-  }
-  @keyframes shake {
+  @keyframes jiggle {
     0% {
       transform: translateX(0.1em);
     }
@@ -58,14 +50,12 @@
   }
   .grey {
     background-color: #eee;
-    animation: rollout 0.05s;
   }
   .green {
     background-color: lightgreen;
-    animation: rollout 0.05s;
   }
   .red {
     background-color: pink;
-    animation: shake 0.15s;
+    animation: jiggle 0.15s;
   }
 </style>

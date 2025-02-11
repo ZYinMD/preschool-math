@@ -1,5 +1,6 @@
 /* this code is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
 
+import { sleep } from "../../lib/util/sleep";
 import { d, s } from "../../states/states.svelte";
 
 const correctSound = new Audio("/correct.mp3");
@@ -36,7 +37,7 @@ export function move(event: MouseEvent | TouchEvent) {
   }
 }
 
-export function drop() {
+export async function drop() {
   if (!moving) return;
   const number = Number((moving as HTMLElement).dataset.number);
   if (!number) return;
@@ -66,6 +67,12 @@ export function drop() {
 
   if (allCorrect) {
     correctSound.play();
+    const answerBar = document.getElementById("answer-bar")!;
+    answerBar.style.translate = "0 -8px";
+    await sleep(20);
+    answerBar.style.translate = "0 0";
+    await sleep(400);
+
     s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
     if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
     else s.allDone = true;
@@ -73,7 +80,7 @@ export function drop() {
 }
 
 /**
- * Checks if two elements overlap.
+ * helper function: checks if two elements overlap.
  */
 function isOverlapping(element1: HTMLElement, element2: HTMLElement) {
   const rectangle1 = element1.getBoundingClientRect();

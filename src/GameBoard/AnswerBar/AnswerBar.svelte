@@ -3,7 +3,7 @@
 </script>
 
 <!-- @component the a + b = c for player to fill -->
-<div class="component">
+<div class="component" id="answer-bar">
   <Cloze position="a" />
   <span class="operator">+</span>
   <Cloze position="b" />
@@ -17,6 +17,7 @@
     align-items: center;
     gap: var(--number-square-font-size);
     margin-bottom: clamp(5px, 4vh, 50px);
+    transition: translate 0.05s;
   }
   .operator {
     font-size: calc(var(--number-square-font-size) * 1.4);

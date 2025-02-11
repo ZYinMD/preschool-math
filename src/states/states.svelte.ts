@@ -84,7 +84,7 @@ export const s = $state({
   questionsThisGame: [] as Question[],
   nowAt: -1, // the current index in questionsThisGame
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
-  currentAnswer: { a: 0, b: 0, c: 0 }, // the user inputted value of a b c. Starts with 0 as being empty
+  currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
   settings: {
     allowQuestionStartingWith: {
       two: true,
