@@ -15,7 +15,7 @@
   }
   function flyAway(_node: Node): TransitionConfig {
     return {
-      duration: 200,
+      duration: 300,
       delay: 0,
       easing: sineInOut,
       css: (t, u) =>

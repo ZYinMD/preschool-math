@@ -5,7 +5,9 @@
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
 <div class="component">
   <div class="progress">
-    Progress: {s.nowAt + 1} / {s.questionsThisGame.length}
+    Progress: {#key s.nowAt}
+      <span class="flip">{s.nowAt + 1}</span> / {s.questionsThisGame.length}
+    {/key}
   </div>
   <div class="message">Please rotate your phone to landscape mode</div>
   <button class="new" onclick={() => (s.view = "settings")}>New</button>
@@ -45,5 +47,19 @@
     padding-left: 1em;
     padding-right: 1em;
     grid-area: new;
+  }
+  span.flip {
+    display: inline-block;
+    animation: flip 0.2s;
+  }
+  @keyframes flip {
+    0% {
+      transform: rotateX(0.5turn);
+      opacity: 0;
+    }
+    100% {
+      transform: none;
+      opacity: 1;
+    }
   }
 </style>
