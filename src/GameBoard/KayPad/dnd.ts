@@ -2,6 +2,8 @@
 
 import { d, s } from "../../states/states.svelte";
 
+const correctSound = new Audio("/correct.mp3");
+
 let moving: null | HTMLElement = null;
 
 export function pickup(event: MouseEvent | TouchEvent) {
@@ -63,6 +65,7 @@ export function drop() {
     s.currentAnswer.c === d.currentQuestion.c;
 
   if (allCorrect) {
+    correctSound.play();
     s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
     if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
     else s.allDone = true;
