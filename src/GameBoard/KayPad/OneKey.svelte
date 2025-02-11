@@ -24,6 +24,7 @@
 <style>
   button {
     /* remove the grey outline on tap on iOS safari? */
+    font-family: consolas, monospace;
     -webkit-tap-highlight-color: #0000;
     width: var(--number-square-size);
     height: var(--number-square-size);

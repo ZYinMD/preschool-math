@@ -76,7 +76,7 @@ export async function drop() {
     answerBar.style.translate = "0 -7px";
     await sleep(25);
     answerBar.style.translate = "0 0";
-    await sleep(400);
+    await sleep(600);
 
     s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
     if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
