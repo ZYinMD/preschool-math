@@ -51,11 +51,17 @@ export async function drop() {
     s.currentAnswer.c = number;
   }
 
+  moving.style.scale = "0";
+  moving.style.opacity = "0";
+  await sleep(30);
   moving.style.left = "";
   moving.style.top = "";
   moving.style.height = "";
   moving.style.width = "";
   moving.style.position = "";
+  await sleep(30);
+  moving.style.scale = "1";
+  moving.style.opacity = "1";
 
   moving = null;
 

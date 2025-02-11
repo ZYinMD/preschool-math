@@ -6,11 +6,8 @@
   --number-square-border-radius: 20%;
   --number-square-font-size: 3vw;
   --tiles-bar-width: min(87vw, 500px);
-}
-
-a {
-  color: #646cff;
-  text-decoration: inherit;
+  --green: rgba(151, 235, 151, 0.9);
+  /* --green: lightgreen; */
 }
 
 body {

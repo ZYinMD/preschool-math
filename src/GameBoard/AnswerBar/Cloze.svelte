@@ -53,7 +53,7 @@
     background-color: #eee;
   }
   .green {
-    background-color: lightgreen;
+    background-color: var(--green);
   }
   .red {
     background-color: pink;

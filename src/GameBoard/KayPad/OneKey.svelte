@@ -31,21 +31,17 @@
     padding: 0;
     display: grid;
     place-items: center;
-    background-color: LightGreen;
-    opacity: 0.9;
+    background-color: var(--green);
     font-size: var(--number-square-font-size);
     color: #0008;
     border: none;
     border-radius: var(--number-square-border-radius);
+    transition:
+      scale 40ms,
+      opacity 40ms;
   }
-  /* make the numbers not selectable. This is an issue if it's pressed for too long on touch device */
-  button:active {
-    transform: scale(1.15);
-    opacity: 0.7;
-  }
-  /* prevent the number from being selected */
+
   .the-number-itself {
-    -webkit-user-select: none; /* Safari */
     user-select: none;
   }
 </style>
