@@ -6,27 +6,19 @@
   };
   let { position }: Props = $props();
 
-  let showColor = $derived(s.currentAnswer.showColor);
-  let playerAnswer = $derived(s.currentAnswer.values[position]);
-  let isCorrect = $derived.by(() => {
+  let playerAnswer = $derived(s.currentAnswer[position]);
+  let isEmpty = $derived(playerAnswer === 0);
+  let color = $derived.by(() => {
+    if (isEmpty) return "grey";
     const correctAnswer = d.currentQuestion[position];
-    return correctAnswer === playerAnswer;
+    return correctAnswer === playerAnswer ? "green" : "red";
   });
-  let content = $derived.by(() => {
-    const isEmpty = playerAnswer === 0;
-    return isEmpty ? "" : playerAnswer;
-  });
+  let content = $derived(isEmpty ? "" : playerAnswer);
 </script>
 
 <!-- @component the square box that starts empty and can be filled with a number -->
 {#key content}
-  <div
-    class="box"
-    class:green={showColor && isCorrect}
-    class:red={showColor && !isCorrect}
-    class:grey={!showColor}
-    id={`cloze-${position}`}
-  >
+  <div class={`box ${color}`} id={`cloze-${position}`}>
     {content}
   </div>
 {/key}

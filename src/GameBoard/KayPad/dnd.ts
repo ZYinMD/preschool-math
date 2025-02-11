@@ -1,6 +1,6 @@
 /* this code is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
 
-import { s, submitAnswer } from "../../states/states.svelte";
+import { d, s } from "../../states/states.svelte";
 
 let moving: null | HTMLElement = null;
 
@@ -40,19 +40,14 @@ export function drop() {
   if (!number) return;
 
   if (isOverlapping(moving, document.getElementById("cloze-a")!)) {
-    s.currentAnswer.values.a = number;
+    s.currentAnswer.a = number;
   }
   if (isOverlapping(moving, document.getElementById("cloze-b")!)) {
-    s.currentAnswer.values.b = number;
+    s.currentAnswer.b = number;
   }
   if (isOverlapping(moving, document.getElementById("cloze-c")!)) {
-    s.currentAnswer.values.c = number;
+    s.currentAnswer.c = number;
   }
-  const allFilled =
-    s.currentAnswer.values.a &&
-    s.currentAnswer.values.b &&
-    s.currentAnswer.values.c;
-  if (allFilled) submitAnswer();
 
   moving.style.left = "";
   moving.style.top = "";
@@ -61,6 +56,17 @@ export function drop() {
   moving.style.position = "";
 
   moving = null;
+
+  const allCorrect =
+    s.currentAnswer.a === d.currentQuestion.a &&
+    s.currentAnswer.b === d.currentQuestion.b &&
+    s.currentAnswer.c === d.currentQuestion.c;
+
+  if (allCorrect) {
+    s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
+    if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
+    else s.allDone = true;
+  }
 }
 
 /**

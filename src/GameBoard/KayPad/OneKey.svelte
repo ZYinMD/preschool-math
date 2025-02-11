@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { s } from "../../states/states.svelte";
   import { drop, move, pickup } from "./dnd";
 
   let { buttonNumber }: { buttonNumber: number } = $props();
@@ -8,7 +7,6 @@
 <!-- ↓ this container div is what stays in place as a placeholder when the button is being dragged -->
 <div class="container">
   <button
-    disabled={s.kayPadDisabled}
     data-number={buttonNumber}
     onmousedown={pickup}
     ontouchstart={pickup}
