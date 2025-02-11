@@ -16,7 +16,6 @@
   }
 </script>
 
-<!-- I could just use pointerdown and pointerup if not for the safari 12 on my son's old ipad -->
 <button
   disabled={s.kayPadDisabled}
   onclick={() => {

@@ -4,7 +4,9 @@
 
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
 <div class="component">
-  <div class="progress">Progress: 7 / 20</div>
+  <div class="progress">
+    Progress: {s.nowAt + 1} / {s.questionsThisGame.length}
+  </div>
   <div class="message">Please rotate your phone to landscape mode</div>
   <button class="new" onclick={() => (s.view = "settings")}>New</button>
 </div>
