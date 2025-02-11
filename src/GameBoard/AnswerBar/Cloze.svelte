@@ -25,6 +25,7 @@
     class:green={showColor && isCorrect}
     class:red={showColor && !isCorrect}
     class:grey={!showColor}
+    id={`cloze-${position}`}
   >
     {content}
   </div>

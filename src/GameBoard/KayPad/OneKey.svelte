@@ -1,31 +1,27 @@
 <script lang="ts">
-  import { s, submitAnswer } from "../../states/states.svelte";
+  import { s } from "../../states/states.svelte";
+  import { drop, move, pickup } from "./dnd";
 
   let { buttonNumber }: { buttonNumber: number } = $props();
-
-  function handleKeyPress(buttonNumber: number) {
-    if (s.kayPadDisabled) return;
-    if (s.currentAnswer.values.a === 0) {
-      s.currentAnswer.values.a = buttonNumber;
-    } else if (s.currentAnswer.values.b === 0) {
-      s.currentAnswer.values.b = buttonNumber;
-    } else if (s.currentAnswer.values.c === 0) {
-      s.currentAnswer.values.c = buttonNumber;
-      submitAnswer();
-    }
-  }
 </script>
 
-<button
-  disabled={s.kayPadDisabled}
-  onclick={() => {
-    handleKeyPress(buttonNumber);
-  }}
->
-  <span class="the-number-itself">
-    {buttonNumber}
-  </span>
-</button>
+<!-- ↓ this container div is what stays in place as a placeholder when the button is being dragged -->
+<div class="container">
+  <button
+    disabled={s.kayPadDisabled}
+    data-number={buttonNumber}
+    onmousedown={pickup}
+    ontouchstart={pickup}
+    onmousemove={move}
+    ontouchmove={move}
+    onmouseup={drop}
+    ontouchend={drop}
+  >
+    <span class="the-number-itself" style="pointer-events: none;">
+      {buttonNumber}
+    </span>
+  </button>
+</div>
 
 <style>
   button {

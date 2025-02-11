@@ -2,9 +2,6 @@
   import { d } from "../../states/states.svelte";
   import OneTile from "./OneTile.svelte";
   let { a, b } = $derived(d.currentQuestion);
-
-  $inspect("a", a);
-  $inspect("b", b);
 </script>
 
 <!-- @component the row of tiles -->
