@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { s } from "../../states/states.svelte";
+  import { restartGame, s } from "../../states/states.svelte";
 </script>
 
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
@@ -10,7 +10,11 @@
     {/key}
   </div>
   <div class="message">Please rotate your phone to landscape mode</div>
-  <button class="new" onclick={() => (s.view = "settings")}>New</button>
+
+  <button class="settings" onclick={() => (s.view = "settings")}
+    >Settings</button
+  >
+  <button class="new" onclick={() => restartGame()}>New</button>
 </div>
 
 <style>
@@ -18,7 +22,7 @@
     min-height: min-content;
     display: grid;
     grid:
-      "progress message new" auto
+      "progress message settings new" auto
       /
       auto 1fr auto;
     align-items: end;
@@ -43,9 +47,17 @@
     }
   }
   button {
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(12px, 1.7vw, 20px);
     padding-left: 1em;
     padding-right: 1em;
+    grid-area: new;
+    opacity: 0.75;
+  }
+  .settings {
+    grid-area: settings;
+    margin-right: 1em;
+  }
+  .new {
     grid-area: new;
   }
   span.flip {

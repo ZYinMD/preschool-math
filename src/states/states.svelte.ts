@@ -152,7 +152,7 @@ export function restartGame() {
     }
     return result;
   }
-
+  s.currentAnswer = { a: 0, b: 0, c: 0 };
   // randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
   s.questionsThisGame = shuffle(d.questionPool).slice(
     0,
