@@ -47,6 +47,7 @@
     height: var(--number-square-size);
     border-radius: var(--number-square-border-radius);
     opacity: 0.9;
+    user-select: none;
   }
   .grey {
     background-color: #eee;

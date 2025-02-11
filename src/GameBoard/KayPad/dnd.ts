@@ -15,7 +15,6 @@ export function pickup(event: MouseEvent | TouchEvent) {
   if (moving) {
     (moving as HTMLElement).style.position = "fixed";
     moving.style.position = "fixed";
-    moving.style.zIndex = "1000";
     moving.style.height = moving.clientHeight + "px";
     moving.style.width = moving.clientWidth + "px";
   }
@@ -68,8 +67,8 @@ export async function drop() {
   if (allCorrect) {
     correctSound.play();
     const answerBar = document.getElementById("answer-bar")!;
-    answerBar.style.translate = "0 -8px";
-    await sleep(20);
+    answerBar.style.translate = "0 -7px";
+    await sleep(25);
     answerBar.style.translate = "0 0";
     await sleep(400);
 
