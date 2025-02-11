@@ -6,7 +6,7 @@
   function rotateIn(_node: Node): TransitionConfig {
     return {
       delay: 300,
-      duration: 50,
+      duration: 120,
       css: (t, _u) => `
         opacity: ${t};
         transform: rotateX(${0.75 + t / 4}turn);

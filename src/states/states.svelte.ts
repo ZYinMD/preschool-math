@@ -81,8 +81,8 @@ const allQuestions = {
  */
 export const s = $state({
   view: "game" as "game" | "settings",
-  questionsThisGame: [] as Question[],
-  nowAt: -1, // the current index in questionsThisGame
+  questionsThisGame: [[0, 0]],
+  nowAt: 0, // the current index in questionsThisGame
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
   settings: {
@@ -101,9 +101,6 @@ export const s = $state({
 });
 
 const currentQuestion = $derived.by(() => {
-  if (s.nowAt === -1) {
-    return { a: 0, b: 0, c: 0 };
-  }
   const [a, b] = s.questionsThisGame[s.nowAt];
   const c = a + b;
   return { a, b, c };
