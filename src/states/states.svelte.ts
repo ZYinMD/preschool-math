@@ -77,7 +77,7 @@ const allQuestions = {
 };
 
 /**
- * s = "states"
+ * s = "global states"
  */
 export const s = $state({
   view: "game" as "game" | "settings",
@@ -120,7 +120,7 @@ const questionPool = $derived.by(() => {
 });
 
 /**
- * d = "derived states"
+ * d = "global derived states"
  */
 export const d = {
   get questionPool() {

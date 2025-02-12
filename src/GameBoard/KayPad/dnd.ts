@@ -7,6 +7,9 @@ const correctSound = new Audio("/correct.mp3");
 
 let moving: null | HTMLElement = null;
 
+/**
+ * This happens on the beginning of the drag. It changes the position of the element to "fixed", so it the position on screen can be arbitrarily set.
+ */
 export function pickup(event: MouseEvent | TouchEvent) {
   console.log(event);
   const number = (event.target as HTMLElement).dataset.number;
@@ -20,6 +23,9 @@ export function pickup(event: MouseEvent | TouchEvent) {
   }
 }
 
+/**
+ * This event happens continuously numerous times every second during the drag. It basically keeps updating the position of the element to the current mouse position.
+ */
 export function move(event: MouseEvent | TouchEvent) {
   if (moving) {
     if ("clientX" in event) {
@@ -51,15 +57,18 @@ export async function drop() {
     s.currentAnswer.c = number;
   }
 
+  // make the dropped button not visible (it'll happen gradually because the button has transition set in its css)
   moving.style.scale = "0";
   moving.style.opacity = "0";
   await sleep(30);
+  // return the button to its original position
   moving.style.left = "";
   moving.style.top = "";
   moving.style.height = "";
   moving.style.width = "";
   moving.style.position = "";
   await sleep(30);
+  // make the button visible again
   moving.style.scale = "1";
   moving.style.opacity = "1";
 
@@ -69,15 +78,14 @@ export async function drop() {
     s.currentAnswer.a === d.currentQuestion.a &&
     s.currentAnswer.b === d.currentQuestion.b &&
     s.currentAnswer.c === d.currentQuestion.c;
-
   if (allCorrect) {
+    // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
     correctSound.play();
     const answerBar = document.getElementById("answer-bar")!;
     answerBar.style.translate = "0 -7px";
     await sleep(25);
     answerBar.style.translate = "0 0";
     await sleep(600);
-
     s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
     if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
     else s.allDone = true;
