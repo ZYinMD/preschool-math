@@ -14,7 +14,7 @@
   <button class="settings" onclick={() => (s.view = "settings")}
     >Settings</button
   >
-  <button class="new" onclick={() => restartGame()}>New</button>
+  <button class="new" onclick={() => restartGame()}>New Game</button>
 </div>
 
 <style>
@@ -47,11 +47,11 @@
     }
   }
   button {
-    font-size: clamp(12px, 1.7vw, 20px);
+    font-size: clamp(12px, 1.45vw, 20px);
     padding-left: 1em;
     padding-right: 1em;
     grid-area: new;
-    opacity: 0.75;
+    opacity: 0.7;
   }
   .settings {
     grid-area: settings;
