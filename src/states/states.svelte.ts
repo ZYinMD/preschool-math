@@ -169,8 +169,8 @@ export function restartGame() {
     0,
     s.settings.numQuestions
   );
-  console.debug("QuestionPool:", d.questionPool);
-  console.debug("QuestionsThisGame:", $state.snapshot(s.questionsThisGame));
+  console.debug("questionPool:", d.questionPool);
+  console.debug("questionsThisGame:", $state.snapshot(s.questionsThisGame));
   s.allDone = false;
   s.nowAt = 0;
 }
