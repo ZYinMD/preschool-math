@@ -29,7 +29,13 @@
 <!-- @component the a + b = c for player to fill -->
 <div class="placeholder">
   {#key s.nowAt}
-    <div class="component" id="answer-bar" in:rotateIn out:flyAway>
+    <div
+      class="answer-bar"
+      id="answer-bar"
+      class:hidden={s.allDone}
+      in:rotateIn
+      out:flyAway
+    >
       <Cloze position="a" />
       <span class="operator">+</span>
       <Cloze position="b" />
@@ -37,6 +43,9 @@
       <Cloze position="c" />
     </div>
   {/key}
+  {#if s.allDone}
+    <div class="all-done-message">All done!</div>
+  {/if}
 </div>
 
 <style>
@@ -45,19 +54,26 @@
     display: grid;
     grid-template-areas: "only";
     place-items: center;
-    margin-bottom: clamp(5px, 4vh, 50px);
+    margin-bottom: clamp(5px, 3vh, 50px);
     height: var(--number-square-size);
   }
-  .component {
+  .answer-bar {
     grid-area: only;
     display: flex;
     align-items: center;
     gap: var(--number-square-font-size);
     transition: translate 30ms ease-in-out; /* this is for the "jump" animation when the answer is correct, it's invoked with javascript in dnd.ts' */
   }
+  .answer-bar.hidden {
+    visibility: hidden; /* use visibility hidden here because I don't want the layout to shift */
+  }
   .operator {
     user-select: none;
     font-size: calc(var(--number-square-font-size) * 1.4);
     font-family: Courier, monospace;
+  }
+  .all-done-message {
+    font-size: 18px;
+    grid-area: only;
   }
 </style>
