@@ -97,6 +97,7 @@ export const s = $state({
       nine: true,
     },
     numQuestions: 10,
+    maxSum: 20,
   },
 });
 
@@ -110,12 +111,13 @@ const currentQuestion = $derived.by(() => {
  * The pool of questions that are allowed to be asked
  */
 const questionPool = $derived.by(() => {
-  const result: Question[] = [];
+  let result: Question[] = [];
   Object.entries(s.settings.allowQuestionStartingWith)
     .filter(([_key, allowed]) => allowed)
     .forEach(([key, _allowed]) => {
       result.push(...allQuestions[key as keyof typeof allQuestions]);
     });
+  result = result.filter(([a, b]) => a + b <= s.settings.maxSum);
   return result;
 });
 
@@ -154,10 +156,12 @@ export function restartGame() {
   }
   s.currentAnswer = { a: 0, b: 0, c: 0 };
   // randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
+  console.debug("QuestionPool:", d.questionPool);
   s.questionsThisGame = shuffle(d.questionPool).slice(
     0,
     s.settings.numQuestions
   );
+  console.debug("QuestionsThisGame:", $state.snapshot(s.questionsThisGame));
   s.allDone = false;
   s.nowAt = 0;
 }
