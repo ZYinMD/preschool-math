@@ -11,9 +11,6 @@ let moving: null | HTMLElement = null;
  * This happens on the beginning of the drag. It changes the position of the element to "fixed", so it the position on screen can be arbitrarily set.
  */
 export function pickup(event: MouseEvent | TouchEvent) {
-  console.log(event);
-  const number = (event.target as HTMLElement).dataset.number;
-  console.log("number", number);
   moving = event.target as HTMLElement;
   if (moving) {
     (moving as HTMLElement).style.position = "fixed";
