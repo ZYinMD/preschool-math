@@ -73,6 +73,7 @@ const allQuestions = {
     [9, 6],
     [9, 7],
     [9, 8],
+    [9, 9],
   ] as Question[],
 };
 

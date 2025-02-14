@@ -17,7 +17,7 @@
     <span>{s.settings.numQuestions}</span>
   </section>
   <section>
-    <div>Include questions starting with:</div>
+    <div>The 1st number can be:</div>
     <div class="checkboxes">
       <div>
         <label for="two">2</label>
@@ -86,7 +86,7 @@
     </div>
   </section>
   <section>
-    <label for="max-sum">Maximum allowed value of the 3rd number (sum):</label>
+    <label for="max-sum">Maximum sum (3rd number) can be:</label>
     <input
       id="max-sum"
       type="range"
