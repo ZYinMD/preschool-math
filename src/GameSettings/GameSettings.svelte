@@ -100,6 +100,10 @@
     <button
       onclick={() => {
         s.view = "game";
+        localStorage.setItem(
+          `settings_v${s.settings.schemaVersion}`,
+          JSON.stringify(s.settings)
+        );
       }}>Go</button
     >
   </section>

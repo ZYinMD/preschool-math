@@ -77,6 +77,27 @@ const allQuestions = {
   ] as Question[],
 };
 
+export const defaultSettings = {
+  schemaVersion: 1, // if the shape of this object gets changed in the future, increment this number
+  allowQuestionStartingWith: {
+    two: true,
+    three: true,
+    four: true,
+    five: true,
+    six: true,
+    seven: true,
+    eight: true,
+    nine: true,
+  },
+  numQuestions: 15,
+  maxSum: 20,
+};
+
+const persistedUserSettings = JSON.parse(
+  localStorage.getItem(`settings_v${defaultSettings.schemaVersion}`)! // if non existing, will return null.JSON.parse(null) is also null
+);
+console.debug("Settings used last time:", persistedUserSettings);
+
 /**
  * s = "global states"
  */
@@ -86,20 +107,7 @@ export const s = $state({
   nowAt: 0, // the current index in questionsThisGame
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
-  settings: {
-    allowQuestionStartingWith: {
-      two: true,
-      three: true,
-      four: true,
-      five: true,
-      six: true,
-      seven: true,
-      eight: true,
-      nine: true,
-    },
-    numQuestions: 10,
-    maxSum: 20,
-  },
+  settings: persistedUserSettings || defaultSettings,
 });
 
 const currentQuestion = $derived.by(() => {
