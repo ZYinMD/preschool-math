@@ -156,11 +156,11 @@ export function restartGame() {
   }
   s.currentAnswer = { a: 0, b: 0, c: 0 };
   // randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
-  console.debug("QuestionPool:", d.questionPool);
   s.questionsThisGame = shuffle(d.questionPool).slice(
     0,
     s.settings.numQuestions
   );
+  console.debug("QuestionPool:", d.questionPool);
   console.debug("QuestionsThisGame:", $state.snapshot(s.questionsThisGame));
   s.allDone = false;
   s.nowAt = 0;

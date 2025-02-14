@@ -86,6 +86,17 @@
     </div>
   </section>
   <section>
+    <label for="max-sum">Maximum allowed value of the 3rd number (sum):</label>
+    <input
+      id="max-sum"
+      type="range"
+      min="5"
+      max="20"
+      bind:value={s.settings.maxSum}
+    />
+    <span>{s.settings.maxSum}</span>
+  </section>
+  <section>
     <button
       onclick={() => {
         s.view = "game";
@@ -99,7 +110,7 @@
     width: 100svw;
     padding: clamp(5px, 6svh, 40px) clamp(5px, 8svw, 50px);
     display: flex;
-    font-size: clamp(15px, 2.5svw, 19px);
+    font-size: clamp(15px, 2.5svw, 18px);
     font-family: Arial, sans-serif;
     flex-direction: column;
     align-items: flex-start;
@@ -114,9 +125,7 @@
     align-items: center;
     flex-wrap: wrap;
   }
-  .checkboxes > input {
-    margin: 0;
-  }
+
   .checkboxes > div {
     display: flex;
   }
