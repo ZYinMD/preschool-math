@@ -1,7 +1,7 @@
 <script lang="ts">
   import { drop, move, pickup } from "./dnd";
 
-  let { buttonNumber }: { buttonNumber: number } = $props();
+  const { buttonNumber }: { buttonNumber: number } = $props();
 </script>
 
 <!-- ↓ this container div is what stays in place as a placeholder when the button is being dragged -->

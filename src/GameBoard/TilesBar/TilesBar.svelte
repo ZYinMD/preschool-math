@@ -1,7 +1,7 @@
 <script lang="ts">
   import { d, s } from "../../states/states.svelte";
   import OneTile from "./OneTile.svelte";
-  let { a, b } = $derived(d.currentQuestion);
+  const { a, b } = $derived(d.currentQuestion);
 </script>
 
 <!-- @component the row of tiles -->

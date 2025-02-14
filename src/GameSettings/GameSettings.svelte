@@ -1,6 +1,6 @@
 <script lang="ts">
   import { s } from "../states/states.svelte";
-  let { allowQuestionStartingWith } = s.settings;
+  const { allowQuestionStartingWith } = s.settings;
 </script>
 
 <!-- @component the settings view -->

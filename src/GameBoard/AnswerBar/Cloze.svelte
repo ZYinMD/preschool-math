@@ -4,16 +4,16 @@
   type Props = {
     position: "a" | "b" | "c";
   };
-  let { position }: Props = $props();
+  const { position }: Props = $props();
 
-  let playerAnswer = $derived(s.currentAnswer[position]);
-  let isEmpty = $derived(playerAnswer === 0);
-  let color = $derived.by(() => {
+  const playerAnswer = $derived(s.currentAnswer[position]);
+  const isEmpty = $derived(playerAnswer === 0);
+  const color = $derived.by(() => {
     if (isEmpty) return "grey";
     const correctAnswer = d.currentQuestion[position];
     return correctAnswer === playerAnswer ? "green" : "red";
   });
-  let content = $derived(isEmpty ? "" : playerAnswer);
+  const content = $derived(isEmpty ? "" : playerAnswer);
 </script>
 
 <!-- @component the square box that starts empty and can be filled with a number -->

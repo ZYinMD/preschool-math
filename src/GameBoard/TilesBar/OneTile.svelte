@@ -1,8 +1,8 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
 
-  let { a, b, nth } = $props();
-  let total = $derived(a + b);
+  const { a, b, nth }: { a: number; b: number; nth: number } = $props();
+  const total = $derived(a + b);
 </script>
 
 <!-- @component One tile contained in a box in the question bar -->
