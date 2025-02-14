@@ -6,44 +6,82 @@
 <!-- @component the settings view -->
 <div class="component">
   <section>
-    <div>Number of questions:</div>
-    <input type="range" min="5" max="30" bind:value={s.settings.numQuestions} />
+    <label for="num-questions">Number of questions:</label>
+    <input
+      id="num-questions"
+      type="range"
+      min="5"
+      max="30"
+      bind:value={s.settings.numQuestions}
+    />
     <span>{s.settings.numQuestions}</span>
   </section>
   <section>
     <div>Include questions starting with:</div>
     <div class="checkboxes">
       <div>
-        <label>2</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.two} />
+        <label for="two">2</label>
+        <input
+          id="two"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.two}
+        />
       </div>
       <div>
-        <label>3</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.three} />
+        <label for="three">3</label>
+        <input
+          id="three"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.three}
+        />
       </div>
       <div>
-        <label>4</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.four} />
+        <label for="four">4</label>
+        <input
+          id="four"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.four}
+        />
       </div>
       <div>
-        <label>5</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.five} />
+        <label for="five">5</label>
+        <input
+          id="five"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.five}
+        />
       </div>
       <div>
-        <label>6</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.six} />
+        <label for="six">6</label>
+        <input
+          id="six"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.six}
+        />
       </div>
       <div>
-        <label>7</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.seven} />
+        <label for="seven">7</label>
+        <input
+          id="seven"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.seven}
+        />
       </div>
       <div>
-        <label>8</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.eight} />
+        <label for="eight">8</label>
+        <input
+          id="eight"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.eight}
+        />
       </div>
       <div>
-        <label>9</label>
-        <input type="checkbox" bind:checked={allowQuestionStartingWith.nine} />
+        <label for="nine">9</label>
+        <input
+          id="nine"
+          type="checkbox"
+          bind:checked={allowQuestionStartingWith.nine}
+        />
       </div>
     </div>
   </section>
