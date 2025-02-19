@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { s } from "../states/states.svelte";
+  import { restartGame, s } from "../states/states.svelte";
   const { allowQuestionStartingWith } = s.settings;
 </script>
 
@@ -104,6 +104,7 @@
           `settings_v${s.settings.schemaVersion}`,
           JSON.stringify(s.settings)
         );
+        restartGame();
       }}>Go</button
     >
   </section>
