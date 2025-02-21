@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { restartGame, s } from "../states/states.svelte";
+  import { s } from "../states/states.svelte";
   const { allowQuestionStartingWith } = s.settings;
+  let explainAboutChanges = $state(false);
+  function anyChange() {
+    explainAboutChanges = true;
+  }
 </script>
 
 <!-- @component the settings view -->
@@ -13,6 +17,7 @@
       min="5"
       max="30"
       bind:value={s.settings.numQuestions}
+      onchange={anyChange}
     />
     <span>{s.settings.numQuestions}</span>
   </section>
@@ -25,6 +30,7 @@
           id="two"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.two}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -33,6 +39,7 @@
           id="three"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.three}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -41,6 +48,7 @@
           id="four"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.four}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -49,6 +57,7 @@
           id="five"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.five}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -57,6 +66,7 @@
           id="six"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.six}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -65,6 +75,7 @@
           id="seven"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.seven}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -73,6 +84,7 @@
           id="eight"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.eight}
+          onchange={anyChange}
         />
       </div>
       <div>
@@ -81,6 +93,7 @@
           id="nine"
           type="checkbox"
           bind:checked={allowQuestionStartingWith.nine}
+          onchange={anyChange}
         />
       </div>
     </div>
@@ -93,9 +106,15 @@
       min="5"
       max="20"
       bind:value={s.settings.maxSum}
+      onchange={anyChange}
     />
     <span>{s.settings.maxSum}</span>
   </section>
+  {#if explainAboutChanges}
+    <section>
+      <div class="explain-changes">Changes take effect next game.</div>
+    </section>
+  {/if}
   <section>
     <button
       onclick={() => {
@@ -104,8 +123,7 @@
           `settings_v${s.settings.schemaVersion}`,
           JSON.stringify(s.settings)
         );
-        restartGame();
-      }}>Go</button
+      }}>OK</button
     >
   </section>
 </div>
@@ -139,5 +157,8 @@
     padding-left: 10px;
     padding-right: 10px;
     opacity: 0.7;
+  }
+  .explain-changes {
+    color: Coral;
   }
 </style>
