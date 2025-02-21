@@ -4,8 +4,8 @@
   const { buttonNumber }: { buttonNumber: number } = $props();
 </script>
 
-<!-- ↓ this container div is what stays in place as a placeholder when the button is being dragged -->
-<div class="container">
+<!-- ↓ this component div is what stays in place as a placeholder when the button is being dragged -->
+<div class="component">
   <button
     data-number={buttonNumber}
     onmousedown={pickup}

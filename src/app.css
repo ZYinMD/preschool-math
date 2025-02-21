@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   line-height: 1.5;
   color-scheme: light dark;
@@ -19,9 +21,4 @@ body {
 
 button {
   cursor: pointer;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }

@@ -11,6 +11,7 @@
 <div class="component">
   <section>
     <label for="num-questions">Number of questions:</label>
+    <br />
     <input
       id="num-questions"
       type="range"
@@ -23,7 +24,7 @@
   </section>
   <section>
     <div>The 1st number can be:</div>
-    <div class="checkboxes">
+    <div class="row-of-checkboxes">
       <div>
         <label for="two">2</label>
         <input
@@ -100,6 +101,7 @@
   </section>
   <section>
     <label for="max-sum">Maximum sum (3rd number) can be:</label>
+    <br />
     <input
       id="max-sum"
       type="range"
@@ -142,15 +144,16 @@
   section {
     margin: 10px 0;
   }
-  .checkboxes {
+  .row-of-checkboxes {
     display: flex;
-    gap: clamp(5px, 2svw, 25px);
+    gap: clamp(5px, 2svw, 22px);
     align-items: center;
     flex-wrap: wrap;
   }
 
-  .checkboxes > div {
+  .row-of-checkboxes > div {
     display: flex;
+    gap: 5px;
   }
   button {
     font-size: 18px;
