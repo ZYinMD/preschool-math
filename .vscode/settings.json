@@ -1,5 +1,6 @@
 {
   "search.exclude": {
-    "**/dist": true
+    ".svelte-kit": true,
+    "build": true
   }
 }

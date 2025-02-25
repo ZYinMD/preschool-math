@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { d, s } from "../../states/states.svelte";
+  import { d, s } from "../../../states/states.svelte";
 
   type Props = {
     position: "a" | "b" | "c";

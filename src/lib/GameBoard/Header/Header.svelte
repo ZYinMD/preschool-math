@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { restartGame, s } from "../../states/states.svelte";
+  import { restartGame, s } from "../../../states/states.svelte";
 </script>
 
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->

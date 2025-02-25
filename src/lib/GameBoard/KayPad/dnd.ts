@@ -1,9 +1,11 @@
 /* this code is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
 
-import { sleep } from "../../lib/util/sleep";
-import { d, s } from "../../states/states.svelte";
+import { browser } from "$app/environment";
+import { sleep } from "../../util/sleep";
+import { d, s } from "../../../states/states.svelte";
+import sound from "$lib/static/correct.mp3";
 
-const correctSound = new Audio("/correct.mp3");
+const correctSound = browser ? new Audio(sound) : null;
 
 let moving: null | HTMLElement = null;
 
@@ -77,7 +79,7 @@ export async function drop() {
     s.currentAnswer.c === d.currentQuestion.c;
   if (allCorrect) {
     // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
-    correctSound.play();
+    correctSound?.play();
     const answerBar = document.getElementById("answer-bar")!;
     answerBar.style.translate = "0 -7px";
     await sleep(25);

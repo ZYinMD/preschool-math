@@ -1,3 +1,5 @@
+import { browser } from "$app/environment";
+
 type Question = [number, number];
 
 const allQuestions = {
@@ -93,9 +95,11 @@ export const defaultSettings = {
   maxSum: 20,
 };
 
-const persistedUserSettings = JSON.parse(
-  localStorage.getItem(`settings_v${defaultSettings.schemaVersion}`)! // if non existing, will return null.JSON.parse(null) is also null
-);
+const persistedUserSettings = browser
+  ? JSON.parse(
+      localStorage.getItem(`settings_v${defaultSettings.schemaVersion}`)! // if non existing, will return null.JSON.parse(null) is also null
+    )
+  : null;
 console.debug("Settings used last time:", persistedUserSettings);
 
 /**

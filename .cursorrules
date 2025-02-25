@@ -1,11 +1,7 @@
-Use Svelte5, the latest version of Svelte, which introduced runes, e.g. $state, $derived, etc. Svelte5 doc: https://svelte.dev/docs/svelte/overview
+Use SvelteKit2 (which uses Svelte5), which support runes, e.g. $state, $derived, etc.
 
-All states ($state) and derived states ($derived) are exported from src/states/states.svelte.ts
+All states ($state) and derived states ($derived) are exported from states.svelte.ts
 
 Standalone .ts files can be used for logic.
 
 Standalone .svelte.ts files can be used for logic when runes need to be used in those files.
-
-This app is a simple math game for preschool kids. There are two main views: the game view and the settings view. Before each new game, the settings view is shown to configure the game. In the game view, if "New" button is clicked, the game is reset into the settings view to be started over.
-
-In the game, a bar of tiles are shown, representing the question _ + _ = _. The correct values are stored in states.currentQuestion.value. The player needs to use the keypad to fill in the blanks, which are stored in states.currentQuestion.answer. After pressing 3 numbers to complete the question, compare with the correct answer. If correct, move to next question.

@@ -1,6 +1,6 @@
 <script lang="ts">
   import OneButton from "./OneKey.svelte";
-  import { s } from "../../states/states.svelte";
+  import { s } from "../../../states/states.svelte";
 </script>
 
 <div class="component" class:hidden={s.allDone}>

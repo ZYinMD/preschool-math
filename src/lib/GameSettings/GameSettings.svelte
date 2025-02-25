@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { s } from "../states/states.svelte";
+  import { s } from "../../states/states.svelte";
   const { allowQuestionStartingWith } = s.settings;
   let explainAboutChanges = $state(false);
   function anyChange() {

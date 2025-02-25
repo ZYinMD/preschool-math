@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { restartGame, s } from "../states/states.svelte";
+  import { restartGame, s } from "../../states/states.svelte";
   import AnswerBar from "./AnswerBar/AnswerBar.svelte";
   import Header from "./Header/Header.svelte";
   import KeyPad from "./KayPad/KeyPad.svelte";
