@@ -4,6 +4,7 @@
   import Header from "./Header/Header.svelte";
   import KeyPad from "./KayPad/KeyPad.svelte";
   import TilesBar from "./TilesBar/TilesBar.svelte";
+  import Tutorial from "./Tutorial/Tutorial.svelte";
 
   /**
    * on mount, if the game hasn't started yet start it.
@@ -22,6 +23,7 @@
   <Header />
   <TilesBar />
   <AnswerBar />
+  <Tutorial />
   <KeyPad />
 </div>
 

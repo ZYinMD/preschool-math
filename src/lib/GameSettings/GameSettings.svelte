@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { restartGame, s } from "../../states/states.svelte";
+  import { fly, slide } from "svelte/transition";
+  import { persistSettings, restartGame, s } from "../../states/states.svelte";
   import ChevronIcon from "../Icons/ChevronIcon.svelte";
   const { allowQuestionStartingWith } = s.settings;
   let explainAboutChanges = $state(false);
@@ -20,10 +21,7 @@
           setTimeout(() => restartGame(), 0);
         }
         s.view = "game";
-        localStorage.setItem(
-          `settings_v${s.settings.schemaVersion}`,
-          JSON.stringify(s.settings)
-        ); // persist settings
+        persistSettings(); // persist settings
       }}
     >
       <ChevronIcon />
@@ -132,11 +130,13 @@
     />
     <span>{s.settings.maxSum}</span>
   </section>
-  {#if explainAboutChanges}
-    <section>
-      <div class="explain-changes">Changes take effect next game.</div>
-    </section>
-  {/if}
+  <section>
+    {#if explainAboutChanges}
+      <div in:fly={{ duration: 100, y: 100 }} class="explain-changes">
+        Changes take effect next game
+      </div>
+    {/if}
+  </section>
 </div>
 
 <style>

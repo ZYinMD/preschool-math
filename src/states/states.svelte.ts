@@ -93,6 +93,7 @@ export const defaultSettings = {
   },
   numQuestions: 15,
   maxSum: 20,
+  showTutorial: true,
 };
 
 const persistedUserSettings = browser
@@ -111,8 +112,16 @@ export const s = $state({
   nowAt: 0, // the current index in questionsThisGame
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
-  settings: persistedUserSettings || defaultSettings,
+  settings:
+    persistedUserSettings || (defaultSettings as typeof defaultSettings),
 });
+
+export function persistSettings() {
+  localStorage.setItem(
+    `settings_v${s.settings.schemaVersion}`,
+    JSON.stringify(s.settings)
+  );
+}
 
 const currentQuestion = $derived.by(() => {
   const [a, b] = s.questionsThisGame[s.nowAt];
@@ -173,6 +182,10 @@ export function restartGame() {
     0,
     s.settings.numQuestions
   );
+  if (s.settings.showTutorial) {
+    s.questionsThisGame[0] = [3, 2];
+    s.questionsThisGame[1] = [8, 4];
+  }
   console.debug("questionPool:", d.questionPool);
   console.debug("questionsThisGame:", $state.snapshot(s.questionsThisGame));
   s.allDone = false;

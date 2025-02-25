@@ -1,9 +1,9 @@
 /* this code is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
 
 import { browser } from "$app/environment";
-import { sleep } from "../../util/sleep";
-import { d, s } from "../../../states/states.svelte";
 import sound from "$lib/static/correct.mp3";
+import { d, persistSettings, s } from "../../../states/states.svelte";
+import { sleep } from "../../util/sleep";
 
 const correctSound = browser ? new Audio(sound) : null;
 
@@ -78,6 +78,11 @@ export async function drop() {
     s.currentAnswer.b === d.currentQuestion.b &&
     s.currentAnswer.c === d.currentQuestion.c;
   if (allCorrect) {
+    // if this question completes the tutorial, stop showing tutorial in the future:
+    if (s.settings.showTutorial && s.nowAt == 1) {
+      s.settings.showTutorial = false;
+      persistSettings();
+    }
     // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
     correctSound?.play();
     const answerBar = document.getElementById("answer-bar")!;
