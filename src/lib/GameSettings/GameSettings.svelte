@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { fly, slide } from "svelte/transition";
+  import { Button } from "$lib/components/ui/button/index.js";
+  import { fly } from "svelte/transition";
   import { persistSettings, restartGame, s } from "../../states/states.svelte";
   import ChevronIcon from "../Icons/ChevronIcon.svelte";
   const { allowQuestionStartingWith } = s.settings;
@@ -130,9 +131,25 @@
     />
     <span>{s.settings.maxSum}</span>
   </section>
+  {#if s.settings.showTutorial === false}
+    <!-- a button for user to see the tutorial again -->
+    <section>
+      <Button
+        variant="outline"
+        size="sm"
+        class="px-3 py-1 h-7 border-gray-300 shadow-none"
+        onclick={() => {
+          s.settings.showTutorial = true;
+          persistSettings();
+        }}
+      >
+        Reset tutorial
+      </Button>
+    </section>
+  {/if}
   <section>
     {#if explainAboutChanges}
-      <div in:fly={{ duration: 100, y: 100 }} class="explain-changes">
+      <div in:fly={{ duration: 100, y: -200 }} class="explain-changes">
         Changes take effect next game
       </div>
     {/if}
@@ -163,12 +180,6 @@
   .row-of-checkboxes > div {
     display: flex;
     gap: 5px;
-  }
-  button {
-    font-size: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
-    opacity: 0.7;
   }
   .explain-changes {
     color: Coral;

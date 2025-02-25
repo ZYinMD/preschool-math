@@ -191,3 +191,11 @@ export function restartGame() {
   s.allDone = false;
   s.nowAt = 0;
 }
+
+// @ts-expect-error: cheat code
+window.dev = {
+  finishTutorial() {
+    s.settings.showTutorial = false;
+    persistSettings();
+  },
+};
