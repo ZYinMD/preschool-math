@@ -1,5 +1,6 @@
 <script lang="ts">
   import { restartGame, s } from "../../states/states.svelte";
+  import ChevronIcon from "../Icons/ChevronIcon.svelte";
   const { allowQuestionStartingWith } = s.settings;
   let explainAboutChanges = $state(false);
   function anyChange() {
@@ -10,6 +11,24 @@
 
 <!-- @component the settings view -->
 <div class="component">
+  <section>
+    <button
+      class="back-button"
+      onclick={() => {
+        // if currently at the 1st question, when leaving the settings page, restart the game. It's possible that no settings have changed, but we don't care.
+        if (s.nowAt === 0) {
+          setTimeout(() => restartGame(), 0);
+        }
+        s.view = "game";
+        localStorage.setItem(
+          `settings_v${s.settings.schemaVersion}`,
+          JSON.stringify(s.settings)
+        ); // persist settings
+      }}
+    >
+      <ChevronIcon />
+    </button>
+  </section>
   <section>
     <label for="num-questions">Number of questions:</label>
     <br />
@@ -118,21 +137,6 @@
       <div class="explain-changes">Changes take effect next game.</div>
     </section>
   {/if}
-  <section>
-    <button
-      onclick={() => {
-        // if currently at the 1st question, when leaving the settings page, restart the game. It's possible that no settings have changed, but we don't care.
-        if (s.nowAt === 0) {
-          setTimeout(() => restartGame(), 0);
-        }
-        s.view = "game";
-        localStorage.setItem(
-          `settings_v${s.settings.schemaVersion}`,
-          JSON.stringify(s.settings)
-        );
-      }}>OK</button
-    >
-  </section>
 </div>
 
 <style>
@@ -168,5 +172,11 @@
   }
   .explain-changes {
     color: Coral;
+  }
+  .back-button {
+    border: none;
+    padding: 5px;
+    position: relative;
+    left: -0.7em;
   }
 </style>
