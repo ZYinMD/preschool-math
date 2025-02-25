@@ -4,8 +4,12 @@
   import Header from "./Header/Header.svelte";
   import KeyPad from "./KayPad/KeyPad.svelte";
   import TilesBar from "./TilesBar/TilesBar.svelte";
+
+  /**
+   * on mount, if the game hasn't started yet start it.
+   * unlike effect in react, with $effect in svelte5 you can't specify what variables to monitor for rerun. The effect will always rerun if anything referenced in the function changes, and it could lead to infinite loops. A trick is that anything referenced inside async code won't be monitored. So, we can put everything in async if we're sure we only want to run once.
+   */
   $effect(() => {
-    // unlike effect in react, with $effect in svelte5 you can't specify what variables to monitor for rerun. The effect will always rerun if anything referenced in the function changes, and it could lead to infinite loops. A trick is that anything referenced inside async code won't be monitored. So, we can put everything in async if we're sure we only want to run once.
     setTimeout(() => {
       const gameHasStarted = s.questionsThisGame.length > 1;
       if (!gameHasStarted) restartGame();

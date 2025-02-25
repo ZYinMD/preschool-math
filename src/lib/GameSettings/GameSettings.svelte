@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { s } from "../../states/states.svelte";
+  import { restartGame, s } from "../../states/states.svelte";
   const { allowQuestionStartingWith } = s.settings;
   let explainAboutChanges = $state(false);
   function anyChange() {
-    explainAboutChanges = true;
+    // if currently in the middle of a game, show the red text "Changes take effect next game." If currently at the 1st question, do nothing, but when leaving the settings page, restart the game
+    if (s.nowAt !== 0) explainAboutChanges = true;
   }
 </script>
 
@@ -120,6 +121,10 @@
   <section>
     <button
       onclick={() => {
+        // if currently at the 1st question, when leaving the settings page, restart the game. It's possible that no settings have changed, but we don't care.
+        if (s.nowAt === 0) {
+          setTimeout(() => restartGame(), 0);
+        }
         s.view = "game";
         localStorage.setItem(
           `settings_v${s.settings.schemaVersion}`,
