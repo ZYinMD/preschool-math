@@ -46,6 +46,7 @@
     border-radius: 5px;
     position: relative;
     top: 5px;
+    right: -0.3vw;
     &:hover {
       background-color: #eee;
     }

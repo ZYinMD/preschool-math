@@ -77,7 +77,7 @@
 :root {
   line-height: 1.5;
   color-scheme: light dark;
-  --number-square-size: 7.5vw;
+  --number-square-size: 7.45vw;
   --number-square-border-radius: 20%;
   --number-square-font-size: 3vw;
   --tiles-bar-width: min(87vw, 500px);
