@@ -78,6 +78,7 @@ const allQuestions = {
     [9, 9],
   ] as Question[],
 };
+export const allQuestionFlat = Object.values(allQuestions).flat();
 
 export const defaultSettings = {
   schemaVersion: 1, // if the shape of this object gets changed in the future, increment this number
@@ -107,7 +108,7 @@ console.debug("Settings used last time:", persistedUserSettings);
  * s = "global states"
  */
 export const s = $state({
-  view: "game" as "game" | "settings",
+  view: "game" as "game" | "settings" | "practice",
   questionsThisGame: [[0, 0]],
   nowAt: 0, // the current index in questionsThisGame
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1

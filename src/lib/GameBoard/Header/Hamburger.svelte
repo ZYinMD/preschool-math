@@ -13,11 +13,8 @@
     </DropdownMenu.Trigger>
     <DropdownMenu.Content>
       <DropdownMenu.Group>
-        <DropdownMenu.Item
-          onclick={() => {
-            console.log("new game");
-            restartGame();
-          }}>New game</DropdownMenu.Item
+        <DropdownMenu.Item onclick={() => restartGame()}
+          >New game</DropdownMenu.Item
         >
         <DropdownMenu.Separator />
 
@@ -26,7 +23,7 @@
         </DropdownMenu.Item>
         <DropdownMenu.Separator />
 
-        <DropdownMenu.Item onclick={() => console.log("practice mode")}>
+        <DropdownMenu.Item onclick={() => (s.view = "practice")}>
           Practice mode
         </DropdownMenu.Item>
       </DropdownMenu.Group>
