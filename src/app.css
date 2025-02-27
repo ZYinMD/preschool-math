@@ -92,3 +92,9 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* Remove focus outline on buttons */
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
