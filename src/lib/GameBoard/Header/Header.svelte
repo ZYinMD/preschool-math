@@ -1,6 +1,6 @@
 <script lang="ts">
   import { s } from "../../../states/states.svelte";
-  import Hamburger from "./ShadcnMenu.svelte";
+  import Hamburger from "./Hamburger.svelte";
 </script>
 
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
