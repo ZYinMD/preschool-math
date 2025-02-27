@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { restartGame, s } from "../../../states/states.svelte";
+  import { s } from "../../../states/states.svelte";
+  import Hamburger from "./ShadcnMenu.svelte";
 </script>
 
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
@@ -10,11 +11,7 @@
     {/key}
   </div>
   <div class="message">Please rotate your phone to landscape mode</div>
-
-  <button class="settings" onclick={() => (s.view = "settings")}
-    >Settings</button
-  >
-  <button class="new" onclick={() => restartGame()}>New Game</button>
+  <Hamburger />
 </div>
 
 <style>
@@ -22,7 +19,7 @@
     min-height: min-content;
     display: grid;
     grid:
-      "progress message settings new" auto
+      "progress message hamburger" auto
       /
       auto 1fr auto;
     align-items: end;
