@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { restartGame, s } from "../../states/states.svelte";
+  import { d, restartGame, s } from "../../states/states.svelte";
+  import TilesBar from "../components/TilesBar/TilesBar.svelte";
   import AnswerBar from "./AnswerBar/AnswerBar.svelte";
   import Header from "./Header/Header.svelte";
   import KeyPad from "./KayPad/KeyPad.svelte";
-  import TilesBar from "../components/TilesBar/TilesBar.svelte";
   import Tutorial from "./Tutorial/Tutorial.svelte";
 
   /**
@@ -21,7 +21,7 @@
 <!-- @component the game view -->
 <div class="component">
   <Header />
-  <TilesBar />
+  <TilesBar {...d.currentQuestion} />
   <AnswerBar />
   <Tutorial />
   <KeyPad />

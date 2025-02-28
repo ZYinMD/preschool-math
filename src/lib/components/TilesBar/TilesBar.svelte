@@ -1,14 +1,19 @@
 <script lang="ts">
-  import { d, s } from "../../../states/states.svelte";
+  import { s } from "../../../states/states.svelte";
   import OneTile from "./OneTile.svelte";
-  const { a, b } = $derived(d.currentQuestion);
+  type Props = {
+    a: number;
+    b: number;
+    animate?: boolean;
+  };
+  const { a, b, animate = true }: Props = $props();
 </script>
 
 <!-- @component the row of tiles -->
 <div class="component" class:hidden={s.allDone}>
   <div class="tiles">
     {#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] as i (i)}
-      <OneTile {a} {b} nth={i} />
+      <OneTile {a} {b} nth={i} {animate} />
     {/each}
   </div>
   <div class="divider"></div>

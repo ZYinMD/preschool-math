@@ -1,7 +1,12 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
-
-  const { a, b, nth }: { a: number; b: number; nth: number } = $props();
+  type Props = {
+    a: number;
+    b: number;
+    nth: number;
+    animate?: boolean;
+  };
+  const { a, b, nth, animate = true }: Props = $props();
   const total = $derived(a + b);
 </script>
 
@@ -9,7 +14,7 @@
 <div class="box">
   {#key total}
     <div
-      in:scale={{ start: 0, duration: 100, delay: 20 * nth }}
+      in:scale={{ start: 0, duration: 100, delay: animate ? 20 * nth : 0 }}
       class="tile"
       class:a={nth <= a}
       class:b={nth <= total && nth > a}
