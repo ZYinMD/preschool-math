@@ -1,5 +1,6 @@
 <script lang="ts">
   import { allQuestionFlat, s } from "../../states/states.svelte";
+  import TilesBar from "../components/TilesBar/TilesBar.svelte";
   import ArrowIcon from "../Icons/ArrowIcon.svelte";
   import ChevronIcon from "../Icons/ChevronIcon.svelte";
   let position = $state(28);
@@ -13,7 +14,9 @@
       <ChevronIcon />
     </button>
   </div>
-  <div class="tiles-bar">tiles</div>
+  <div class="tiles-bar">
+    <TilesBar a={currentQuestion[0]} b={currentQuestion[1]} animate={false} />
+  </div>
   <div class="hint">{currentQuestion[0]} + ? = ?</div>
   <div class="arrows">
     <button
