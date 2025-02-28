@@ -3,7 +3,7 @@
   import AnswerBar from "./AnswerBar/AnswerBar.svelte";
   import Header from "./Header/Header.svelte";
   import KeyPad from "./KayPad/KeyPad.svelte";
-  import TilesBar from "./TilesBar/TilesBar.svelte";
+  import TilesBar from "../components/TilesBar/TilesBar.svelte";
   import Tutorial from "./Tutorial/Tutorial.svelte";
 
   /**
