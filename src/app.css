@@ -98,3 +98,7 @@ button:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+/* disable text selection on everything because kids like to do unexpected gestures on touch screens */
+* {
+  user-select: none;
+}
