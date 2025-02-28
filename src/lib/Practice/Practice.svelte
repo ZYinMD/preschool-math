@@ -17,6 +17,7 @@
   <div class="tiles-bar">
     <TilesBar a={currentQuestion[0]} b={currentQuestion[1]} animate={false} />
   </div>
+  <div class="message">Please rotate your phone to landscape mode</div>
   <div class="hint">{currentQuestion[0]} + ? = ?</div>
   <div class="arrows">
     <button
@@ -34,6 +35,9 @@
       }}><ArrowIcon /></button
     >
   </div>
+  <div class="instruction">
+    Think in your head: what are the missing numbers?
+  </div>
 </div>
 
 <style>
@@ -46,11 +50,39 @@
     height: 100svh;
     overflow: hidden;
   }
-  .arrows {
-    height: 100px;
+  .header {
+    width: var(--tiles-bar-width);
     display: flex;
-    align-items: center;
-    gap: 80px;
+    justify-content: flex-start;
+    margin-bottom: clamp(0px, 7svh, 70px);
+    & .back-button {
+      position: relative;
+      left: -0.35em;
+    }
+  }
+  .tiles-bar {
+    margin-bottom: clamp(0px, 1.5svh, 15px);
+  }
+  .hint {
+    font-size: 1.5em;
+    font-size: calc(var(--tiles-bar-width) / 17);
+    margin-bottom: clamp(0px, 7svh, 70px);
+  }
+  .message {
+    grid-area: message;
+    text-align: center;
+    color: tomato;
+    font-size: clamp(14px, 2vw, 24px);
+  }
+  @media (width > 500px) {
+    .message {
+      display: none;
+    }
+  }
+  .arrows {
+    display: flex;
+    gap: clamp(40px, 8svw, 80px);
+    margin-bottom: clamp(0px, 6svh, 60px);
   }
   .arrow-left,
   .arrow-right {
@@ -60,17 +92,22 @@
     width: 40px;
     display: grid;
     place-items: center;
-    scale: 1.5;
-    font-size: 1.8em;
-    opacity: 0.5;
+    scale: 1.5; /* don't change this, because somehow it messes up the centering of the icon */
+    font-size: clamp(20px, 3.2svw, 32px);
+    color: #bbb;
     &:hover {
-      background-color: #eee;
+      background-color: #f8f8f8;
     }
     &:active {
-      background-color: #ddd;
+      scale: 1.55;
     }
   }
   .arrow-right {
     transform: scaleX(-1);
+  }
+  .instruction {
+    font-size: 14px;
+    opacity: 0.5;
+    margin-top: 5px;
   }
 </style>
