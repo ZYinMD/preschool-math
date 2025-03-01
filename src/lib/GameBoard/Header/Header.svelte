@@ -43,20 +43,6 @@
       display: none;
     }
   }
-  button {
-    font-size: clamp(12px, 1.45vw, 20px);
-    padding-left: 1em;
-    padding-right: 1em;
-    grid-area: new;
-    opacity: 0.7;
-  }
-  .settings {
-    grid-area: settings;
-    margin-right: 1em;
-  }
-  .new {
-    grid-area: new;
-  }
   span.flip {
     display: inline-block;
     animation: flip 0.2s;

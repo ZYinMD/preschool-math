@@ -7,8 +7,7 @@
   {#if s.settings.showTutorial === true}
     {#if s.nowAt === 0 && d.currentQuestion.a === 3 && d.currentQuestion.b === 2}
       <div>
-        Tutorial: the answer of this question is 3 + 2 = 5, drag 3, 2, 5 into
-        the equation
+        Tutorial: the answer is 3 + 2 = 5, drag 3, 2, 5 into the equation
       </div>
     {/if}
     {#if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c !== 12}
@@ -28,6 +27,7 @@
   .component {
     color: coral;
     opacity: 0.8;
+    font-size: clamp(12px, 3.2vh, 20px);
   }
   .pipe {
     display: inline-block;
