@@ -13,17 +13,23 @@
     </DropdownMenu.Trigger>
     <DropdownMenu.Content>
       <DropdownMenu.Group>
-        <DropdownMenu.Item onclick={() => restartGame()}
-          >New game</DropdownMenu.Item
+        <DropdownMenu.Item class="text-lg" onclick={() => restartGame()}>
+          New game</DropdownMenu.Item
         >
         <DropdownMenu.Separator />
 
-        <DropdownMenu.Item onclick={() => (s.view = "settings")}>
+        <DropdownMenu.Item
+          class="text-lg"
+          onclick={() => (s.view = "settings")}
+        >
           Settings
         </DropdownMenu.Item>
         <DropdownMenu.Separator />
 
-        <DropdownMenu.Item onclick={() => (s.view = "practice")}>
+        <DropdownMenu.Item
+          class="text-lg"
+          onclick={() => (s.view = "practice")}
+        >
           Practice mode
         </DropdownMenu.Item>
       </DropdownMenu.Group>
