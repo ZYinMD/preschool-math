@@ -27,7 +27,7 @@
   .component {
     color: coral;
     opacity: 0.8;
-    font-size: clamp(12px, 3.2vh, 20px);
+    font-size: clamp(12px, min(3.3svh, 1.6svw), 18px);
   }
   .pipe {
     display: inline-block;

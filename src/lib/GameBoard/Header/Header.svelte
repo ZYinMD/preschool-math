@@ -24,8 +24,6 @@
       auto 1fr auto;
     align-items: end;
     width: 100%;
-    padding-top: 5px;
-    margin-top: clamp(5px, 4vh, 50px);
     margin-bottom: clamp(5px, 2vh, 50px);
   }
   .progress {

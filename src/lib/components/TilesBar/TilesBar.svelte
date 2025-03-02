@@ -39,7 +39,7 @@
   .divider {
     grid-area: only;
     width: 1px;
-    height: calc(var(--tiles-bar-width) / 6);
+    height: min(calc(var(--tiles-bar-width) / 6), 13svh);
     background-color: silver;
   }
 </style>
