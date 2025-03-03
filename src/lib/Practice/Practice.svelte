@@ -1,10 +1,11 @@
 <script lang="ts">
+  import { blur, scale } from "svelte/transition";
   import { allQuestionFlat, s } from "../../states/states.svelte";
   import TilesBar from "../components/TilesBar/TilesBar.svelte";
   import ArrowIcon from "../Icons/ArrowIcon.svelte";
   import ChevronIcon from "../Icons/ChevronIcon.svelte";
   let position = $state(28);
-  const currentQuestion = $derived(allQuestionFlat[position]);
+  let [a, b] = $derived(allQuestionFlat[position]);
 </script>
 
 <!-- @component the practice mode -->
@@ -15,10 +16,22 @@
     </button>
   </div>
   <div class="tiles-bar">
-    <TilesBar a={currentQuestion[0]} b={currentQuestion[1]} animate={false} />
+    <TilesBar {a} {b} animate={false} />
   </div>
   <div class="message">Please rotate your phone to landscape mode</div>
-  <div class="hint">{currentQuestion[0]} + ? = ?</div>
+  <div class="hint">
+    {#key a}
+      <span in:blur={{ duration: 400 }}>{a}</span>
+    {/key}
+    +
+    {#key b}
+      <span in:scale={{ duration: 100 }}>?</span>
+    {/key}
+    =
+    {#key b}
+      <span in:scale={{ duration: 100 }}>?</span>
+    {/key}
+  </div>
   <div class="arrows">
     <button
       class="arrow-left"
@@ -35,9 +48,7 @@
       }}><ArrowIcon /></button
     >
   </div>
-  <div class="instruction">
-    Think in your head: what are the missing numbers?
-  </div>
+  <div class="instruction">Answer aloud: what are the missing numbers?</div>
 </div>
 
 <style>
@@ -67,6 +78,8 @@
     font-size: 1.5em;
     font-size: calc(var(--tiles-bar-width) / 17);
     margin-bottom: clamp(0px, 7svh, 70px);
+    display: flex;
+    gap: 1em;
   }
   .message {
     grid-area: message;
