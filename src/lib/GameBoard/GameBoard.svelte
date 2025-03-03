@@ -29,8 +29,8 @@
 
 <style>
   .component {
-    width: 92vw;
-    height: 100vh;
+    width: 92svw;
+    height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;

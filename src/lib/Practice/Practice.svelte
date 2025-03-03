@@ -72,7 +72,7 @@
     grid-area: message;
     text-align: center;
     color: tomato;
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(14px, 2svw, 24px);
   }
   @media (width > 500px) {
     .message {

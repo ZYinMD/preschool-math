@@ -24,17 +24,17 @@
       auto 1fr auto;
     align-items: end;
     width: 100%;
-    margin-bottom: clamp(5px, 2vh, 50px);
+    margin-bottom: clamp(5px, 2svh, 50px);
   }
   .progress {
     grid-area: progress;
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(14px, 2svw, 24px);
   }
   .message {
     grid-area: message;
     text-align: center;
     color: tomato;
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(14px, 2svw, 24px);
   }
   @media (width > 500px) {
     .message {

@@ -28,7 +28,7 @@
     -webkit-tap-highlight-color: #0000;
     width: var(--number-square-size);
     height: var(--number-square-size);
-    margin: 1vw;
+    margin: 1svw;
     padding: 0;
     display: grid;
     place-items: center;

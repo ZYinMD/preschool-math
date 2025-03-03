@@ -27,7 +27,7 @@
       /
       auto;
     place-items: center;
-    margin-bottom: clamp(5px, 4vh, 50px);
+    margin-bottom: clamp(5px, 4svh, 50px);
   }
   .component.hidden {
     visibility: hidden; /* use visibility hidden here because I don't want the layout to shift */

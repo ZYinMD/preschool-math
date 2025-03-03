@@ -19,7 +19,7 @@
       delay: 0,
       easing: sineInOut,
       css: (t, u) =>
-        `transform: translateX(${-40 * u}vw) translateY(${-30 * u}vw) rotateZ(${
+        `transform: translateX(${-40 * u}svw) translateY(${-30 * u}svw) rotateZ(${
           -140 * u
         }deg) scale(${t}); opacity: ${t};`,
     };
@@ -54,7 +54,7 @@
     display: grid;
     grid-template-areas: "only";
     place-items: center;
-    margin-bottom: clamp(5px, 3vh, 50px);
+    margin-bottom: clamp(5px, 3svh, 50px);
     height: var(--number-square-size);
   }
   .answer-bar {
