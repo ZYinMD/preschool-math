@@ -8,16 +8,10 @@
   };
   const { a, b, nth, animate = true }: Props = $props();
   const total = $derived(a + b);
-  // the key determine if the tile will be animated. If !animate, it's in practice mode, animate the cyan tiles only when `a` changes, otherwise only animate orange tiles. If animate is true, then always animate all tiles.
+  // the key determine if the tile will be animated. If !animate, it's in practice mode, only animate when `a` changes.
   const key = $derived.by(() => {
-    if (!animate && nth <= a) return a;
-    return JSON.stringify({ a, b }); // I could use Math.random(), but the derive function will only rerun when some value it referenced changes, so this function needs to reference both a and b in someway.
-  });
-  $inspect(key);
-  // when the delay of each tile is different, it looks like the tiles wave from left to right. divided by total so the animation of the whole row takes the same amount of time regardless of the total. When !animate, it's in practice mode, don't delay.
-  const delay = $derived.by(() => {
-    if (animate) return Math.round((120 / total) * nth);
-    return 0;
+    if (animate) return JSON.stringify({ a, b }); // I could use Math.random(), but the derive function will only rerun when some value it referenced changes, so this function needs to reference both a and b in someway.
+    return a;
   });
 </script>
 
@@ -25,7 +19,11 @@
 <div class="box">
   {#key key}
     <div
-      in:scale={{ start: 0, duration: 100, delay }}
+      in:scale={{
+        start: 0,
+        duration: 100,
+        delay: Math.round((120 / total) * nth), // when the delay of each tile is different, it looks like the tiles wave from left to right. divided by total so the animation of the whole row takes the same amount of time regardless of the total.
+      }}
       class="tile"
       class:a={nth <= a}
       class:b={nth <= total && nth > a}
