@@ -27,7 +27,7 @@
       /
       auto;
     place-items: center;
-    margin-bottom: clamp(5px, 4svh, 50px);
+    margin-bottom: clamp(0px, 5svh, 50px);
   }
   .component.hidden {
     visibility: hidden; /* use visibility hidden here because I don't want the layout to shift */
@@ -39,7 +39,8 @@
   .divider {
     grid-area: only;
     width: 1px;
-    height: min(calc(var(--tiles-bar-width) / 6), 13svh);
+    height: min(calc(var(--tiles-bar-width) / 7.5), 17svh);
     background-color: silver;
+    position: fixed;
   }
 </style>

@@ -21,13 +21,15 @@
 </div>
 
 <style>
+  .component {
+    padding: 0.8svw;
+  }
   button {
     /* remove the grey outline on tap on iOS safari? */
     font-family: consolas, monospace;
     -webkit-tap-highlight-color: #0000;
     width: var(--number-square-size);
     height: var(--number-square-size);
-    margin: 1svw;
     padding: 0;
     display: grid;
     place-items: center;
