@@ -144,7 +144,7 @@
 <style>
   .component {
     width: 100svw;
-    padding: clamp(5px, 6svh, 40px) clamp(5px, 8svw, 50px);
+    padding: clamp(5px, 5svh, 40px) clamp(5px, 8svw, 50px);
     display: flex;
     font-size: clamp(15px, 2.5svw, 18px);
     font-family: Arial, sans-serif;
@@ -153,7 +153,7 @@
     gap: 10px;
   }
   section {
-    margin: 10px 0;
+    margin: min(10px, 1.3svh) 0;
   }
   .row-of-checkboxes {
     display: flex;
