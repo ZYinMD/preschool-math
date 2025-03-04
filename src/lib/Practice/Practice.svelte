@@ -97,11 +97,16 @@
     scale: 1.5; /* don't change this, because somehow it messes up the centering of the icon */
     font-size: clamp(20px, 3.2svw, 32px);
     color: #bbb;
-    &:hover {
-      background-color: #f8f8f8;
-    }
     &:active {
+      background-color: #f8f8f8;
       scale: 1.55;
+    }
+  }
+  /* apply hover styles only on devices that support hover. Without this, the hover state can stick after click */
+  @media (hover: hover) {
+    .arrow-left:hover,
+    .arrow-right:hover {
+      background-color: #f8f8f8;
     }
   }
   .arrow-right {
