@@ -116,13 +116,11 @@ async function handleDropAfterDrag(pickedUp: HTMLElement) {
 
   // make the dropped button "disappear" (it'll happen gradually because the button has transition set in its css)
   pickedUp.style.scale = "0";
-  pickedUp.style.opacity = "0";
-  await sleep(30);
+  await sleep(50);
   putDown(pickedUp);
-  await sleep(30);
+  await sleep(50);
   // make the button re-appear at its original location (it'll happen gradually because the button has transition set in its css)
   pickedUp.style.scale = "1";
-  pickedUp.style.opacity = "1";
   hasMoved = false;
 }
 
@@ -167,6 +165,7 @@ function pickUp(element: HTMLElement) {
   element.style.position = "fixed"; // note it won't immediately teleport the element to the top left corner until "top" and "left" are explicitly set. The element will remain in its previous visual position after this line.
   element.style.height = element.clientHeight + "px";
   element.style.width = element.clientWidth + "px";
+  element.style.scale = "1.05";
 }
 
 /**
@@ -178,4 +177,5 @@ function putDown(element: HTMLElement) {
   element.style.height = "";
   element.style.width = "";
   element.style.position = "";
+  element.style.scale = "";
 }

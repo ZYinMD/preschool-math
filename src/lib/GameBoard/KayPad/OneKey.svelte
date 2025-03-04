@@ -37,12 +37,8 @@
     border: 1px solid white;
     border-radius: var(--number-square-border-radius);
     transition:
-      scale 40ms,
-      opacity 40ms;
-    /* ↓ this affects drag too */
-    &:active {
-      scale: 1.1;
-    }
+      scale 80ms,
+      opacity 80ms;
   }
 
   .the-number-itself {
