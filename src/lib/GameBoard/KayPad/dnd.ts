@@ -10,16 +10,11 @@ let pickedUp: null | HTMLElement = null;
  */
 export function dragStart(event: MouseEvent | TouchEvent) {
   pickedUp = event.target as HTMLElement;
-  if (pickedUp) {
-    (pickedUp as HTMLElement).style.position = "fixed";
-    pickedUp.style.position = "fixed";
-    pickedUp.style.height = pickedUp.clientHeight + "px";
-    pickedUp.style.width = pickedUp.clientWidth + "px";
-  }
+  if (pickedUp) pickUp(pickedUp);
 }
 
 /**
- * This event happens continuously numerous times every second during the drag. It basically keeps updating the position of the element to the current mouse position.
+ * This event happens continuously numerous times during the drag. It basically keeps updating the position of the element to the current mouse position.
  */
 export function move(event: MouseEvent | TouchEvent) {
   if (pickedUp) {
@@ -39,6 +34,15 @@ export function move(event: MouseEvent | TouchEvent) {
 
 export async function dragEnd() {
   if (!pickedUp) return;
+  await handleDropAfterDrag(pickedUp);
+  pickedUp = null;
+  await checkAnswer();
+}
+
+/**
+ * Call this if the number has been really dragged and dropped
+ */
+async function handleDropAfterDrag(pickedUp: HTMLElement) {
   const number = Number((pickedUp as HTMLElement).dataset.number);
   if (!number) return;
 
@@ -56,24 +60,14 @@ export async function dragEnd() {
   pickedUp.style.scale = "0";
   pickedUp.style.opacity = "0";
   await sleep(30);
-  // return the button to its original position
-  pickedUp.style.left = "";
-  pickedUp.style.top = "";
-  pickedUp.style.height = "";
-  pickedUp.style.width = "";
-  pickedUp.style.position = "";
+  putDown(pickedUp);
   await sleep(30);
   // make the button visible again
   pickedUp.style.scale = "1";
   pickedUp.style.opacity = "1";
-
-  pickedUp = null;
-
-  await checkAnswer();
 }
 
-async function handleDropAfterDrag() {}
-
+function handleClick() {}
 /**
  * helper function: checks if two elements overlap.
  */
@@ -88,4 +82,24 @@ function isOverlapping(element1: HTMLElement, element2: HTMLElement) {
       rectangle1.top > rectangle2.bottom
     ) // element1 is completely below element2
   );
+}
+
+/**
+ * to "pickup" an element means to give it position fixed, make it ready to move
+ */
+function pickUp(element: HTMLElement) {
+  element.style.position = "fixed"; // note it won't immediately teleport the element to the top left corner until "top" and "left" are explicitly set. The element will remain in its previous visual position after this line.
+  element.style.height = element.clientHeight + "px";
+  element.style.width = element.clientWidth + "px";
+}
+
+/**
+ * to "put down" an element means to remove the position fixed, make it go back to its original position
+ */
+function putDown(element: HTMLElement) {
+  element.style.left = "";
+  element.style.top = "";
+  element.style.height = "";
+  element.style.width = "";
+  element.style.position = "";
 }
