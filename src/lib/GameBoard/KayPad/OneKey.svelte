@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { drop, move, pickup } from "./dnd";
+  import { dragEnd, dragStart, move } from "./dnd";
   const { buttonNumber }: { buttonNumber: number } = $props();
 </script>
 
@@ -8,12 +8,12 @@
   <!-- ↓ the button is the actual number that can be dragged -->
   <button
     data-number={buttonNumber}
-    onmousedown={pickup}
-    ontouchstart={pickup}
+    onmousedown={dragStart}
+    ontouchstart={dragStart}
     onmousemove={move}
     ontouchmove={move}
-    onmouseup={drop}
-    ontouchend={drop}
+    onmouseup={dragEnd}
+    ontouchend={dragEnd}
   >
     <span class="the-number-itself" style="pointer-events: none;">
       {buttonNumber}
