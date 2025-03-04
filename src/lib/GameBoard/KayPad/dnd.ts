@@ -7,12 +7,33 @@ import { s } from "../../../states/states.svelte";
 
 let pickedUp: null | HTMLElement = null;
 
+const DRAG_THRESHOLD = 5; // threshold in pixels to differentiate a drag from a click
+
+// track initial position and whether movement occurred
+let startX = 0;
+let startY = 0;
+let hasMoved = false;
+
 /**
  * This happens on the beginning of the drag. It changes the position of the element to "fixed", so it the position on screen can be arbitrarily set.
  */
 export function dragStart(event: MouseEvent | TouchEvent) {
   pickedUp = event.target as HTMLElement;
-  if (pickedUp) pickUp(pickedUp);
+  hasMoved = false;
+
+  // Record the starting position
+  if (pickedUp) {
+    if ("clientX" in event) {
+      // mouse action
+      startX = event.clientX;
+      startY = event.clientY;
+    } else {
+      // touch screen - assuming a single touch point
+      startX = event.changedTouches[0].clientX;
+      startY = event.changedTouches[0].clientY;
+    }
+    pickUp(pickedUp);
+  }
 }
 
 /**
@@ -20,24 +41,38 @@ export function dragStart(event: MouseEvent | TouchEvent) {
  */
 export function move(event: MouseEvent | TouchEvent) {
   if (pickedUp) {
+    let currentX: number;
+    let currentY: number;
+
     if ("clientX" in event) {
       // mousemove
-      pickedUp.style.left = event.clientX - pickedUp.clientWidth / 2 + "px";
-      pickedUp.style.top = event.clientY - pickedUp.clientHeight / 2 + "px";
+      currentX = event.clientX;
+      currentY = event.clientY;
     } else {
       // touchmove - assuming a single touch point
-      pickedUp.style.left =
-        event.changedTouches[0].clientX - pickedUp.clientWidth / 2 + "px";
-      pickedUp.style.top =
-        event.changedTouches[0].clientY - pickedUp.clientHeight / 2 + "px";
+      currentX = event.changedTouches[0].clientX;
+      currentY = event.changedTouches[0].clientY;
+    }
+
+    // update the position of the element to match current mouse / finger
+    pickedUp.style.left = currentX - pickedUp.clientWidth / 2 + "px";
+    pickedUp.style.top = currentY - pickedUp.clientHeight / 2 + "px";
+
+    // Check if the movement is greater than the threshold
+    const deltaX = Math.abs(currentX - startX);
+    const deltaY = Math.abs(currentY - startY);
+    if (deltaX > DRAG_THRESHOLD || deltaY > DRAG_THRESHOLD) {
+      hasMoved = true;
     }
   }
 }
 
 export async function dragEnd() {
   if (!pickedUp) return;
-  // TODO: if it's been a dnd, called handleDropAfterDrag(), if it's been a click, call handleClick().
-  await handleDropAfterDrag(pickedUp);
+
+  if (hasMoved) await handleDropAfterDrag(pickedUp); // it was a drag
+  else handleClick(pickedUp); // it was a click
+
   pickedUp = null;
   await checkAnswer();
 }
@@ -59,21 +94,35 @@ async function handleDropAfterDrag(pickedUp: HTMLElement) {
     s.currentAnswer.c = number;
   }
 
-  // make the dropped button not visible (it'll happen gradually because the button has transition set in its css)
+  // make the dropped button "disappear" (it'll happen gradually because the button has transition set in its css)
   pickedUp.style.scale = "0";
   pickedUp.style.opacity = "0";
   await sleep(30);
   putDown(pickedUp);
   await sleep(30);
-  // make the button visible again
+  // make the button re-appear at its original location (it'll happen gradually because the button has transition set in its css)
   pickedUp.style.scale = "1";
   pickedUp.style.opacity = "1";
+  hasMoved = false;
 }
 
 /**
  * Call this if the number is clicked, not dragged.
  */
-function handleClick(element: HTMLElement) {}
+function handleClick(element: HTMLElement) {
+  const number = Number(element.dataset.number);
+  if (!number) return;
+
+  if (s.currentAnswer.a === 0) {
+    s.currentAnswer.a = number;
+  } else if (s.currentAnswer.b === 0) {
+    s.currentAnswer.b = number;
+  } else if (s.currentAnswer.c === 0) {
+    s.currentAnswer.c = number;
+  }
+
+  putDown(element);
+}
 
 /**
  * helper function: checks if two elements overlap.

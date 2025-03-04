@@ -12,8 +12,14 @@
     ontouchstart={dragStart}
     onmousemove={move}
     ontouchmove={move}
-    onmouseup={dragEnd}
-    ontouchend={dragEnd}
+    onmouseup={() => {
+      console.debug("onmouseup");
+      dragEnd();
+    }}
+    ontouchend={() => {
+      console.debug("ontouchend");
+      dragEnd();
+    }}
   >
     <span class="the-number-itself" style="pointer-events: none;">
       {buttonNumber}
