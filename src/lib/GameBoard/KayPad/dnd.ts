@@ -2,8 +2,8 @@
 
 import { browser } from "$app/environment";
 import sound from "$lib/static/correct.mp3";
+import { sleep } from "../../../states/helper";
 import { d, persistSettings, s } from "../../../states/states.svelte";
-import { sleep } from "../../util/sleep";
 
 const correctSound = browser ? new Audio(sound) : null;
 

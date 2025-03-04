@@ -1,7 +1,8 @@
 <script lang="ts">
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import HamburgerIcon from "$lib/Icons/HamburgerIcon.svelte";
-  import { restartGame, s } from "../../../states/states.svelte";
+  import { restartGame } from "../../../states/helper";
+  import { s } from "../../../states/states.svelte";
 </script>
 
 <div class="component">

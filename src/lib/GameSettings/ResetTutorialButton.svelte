@@ -2,7 +2,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { fly } from "svelte/transition";
   import { persistSettings, s } from "../../states/states.svelte";
-  import { sleep } from "../util/sleep";
+  import { sleep } from "../../states/helper";
   let text = $state("Reset tutorial");
 </script>
 

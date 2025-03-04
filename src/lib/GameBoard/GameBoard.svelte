@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { d, restartGame, s } from "../../states/states.svelte";
+  import { restartGame } from "../../states/helper";
+  import { d, s } from "../../states/states.svelte";
   import TilesBar from "../components/TilesBar/TilesBar.svelte";
   import AnswerBar from "./AnswerBar/AnswerBar.svelte";
   import Header from "./Header/Header.svelte";

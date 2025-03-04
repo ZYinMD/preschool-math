@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { persistSettings, restartGame, s } from "../../states/states.svelte";
+  import { restartGame } from "../../states/helper";
+  import { persistSettings, s } from "../../states/states.svelte";
   import ChevronIcon from "../Icons/ChevronIcon.svelte";
   import ResetTutorial from "./ResetTutorialButton.svelte";
   const { allowQuestionStartingWith } = s.settings;
