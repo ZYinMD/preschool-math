@@ -18,6 +18,8 @@ let hasMoved = false;
  * This happens on the beginning of the drag. It changes the position of the element to "fixed", so it the position on screen can be arbitrarily set.
  */
 export function dragStart(event: MouseEvent | TouchEvent) {
+  if (pickedUp) return;
+
   pickedUp = event.target as HTMLElement;
   hasMoved = false;
 
