@@ -15,7 +15,7 @@
   });
 </script>
 
-<!-- @component One tile contained in a box in the question bar -->
+<!-- @component One tile contained in a box in the tiles bar -->
 <div class="box">
   {#key key}
     <div

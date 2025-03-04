@@ -1,11 +1,11 @@
 <script lang="ts">
   import { drop, move, pickup } from "./dnd";
-
   const { buttonNumber }: { buttonNumber: number } = $props();
 </script>
 
-<!-- ↓ this component div is what stays in place as a placeholder when the button is being dragged -->
+<!-- ↓ the outer div is what stays in place as a placeholder when the button is being dragged. It ensures other numbers don't shift. -->
 <div class="component">
+  <!-- ↓ the button is the actual number that can be dragged -->
   <button
     data-number={buttonNumber}
     onmousedown={pickup}
@@ -40,6 +40,12 @@
     transition:
       scale 40ms,
       opacity 40ms;
+    /* ↓ this affects drag too */
+    &:active {
+      border: 1px solid white;
+      scale: 1.1;
+      opacity: 1;
+    }
   }
 
   .the-number-itself {
