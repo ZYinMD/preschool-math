@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dragEnd, dragStart, move } from "./dnd";
+  import { dragStart } from "./dnd";
   const { buttonNumber }: { buttonNumber: number } = $props();
 </script>
 
@@ -12,13 +12,6 @@
     ontouchstart={(event) => {
       event.preventDefault(); // prevent touch device from generating simulated click event (a compatibility feature to support old websites built for mouse only) because we listen for mouse events too, which can lead to double handling the event
       dragStart(event);
-    }}
-    onmousemove={move}
-    ontouchmove={move}
-    onmouseup={dragEnd}
-    ontouchend={(event) => {
-      event.preventDefault(); // prevent touch device from generating simulated click event (a compatibility feature to support old websites built for mouse only) because we listen for mouse events too, which can lead to double handling the event
-      dragEnd();
     }}
   >
     <span class="the-number-itself" style="pointer-events: none;">
