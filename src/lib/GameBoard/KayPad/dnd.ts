@@ -1,11 +1,7 @@
 /* this code is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
 
-import { browser } from "$app/environment";
-import sound from "$lib/static/correct.mp3";
-import { sleep } from "../../../states/helper";
-import { d, persistSettings, s } from "../../../states/states.svelte";
-
-const correctSound = browser ? new Audio(sound) : null;
+import { checkAnswer, sleep } from "../../../states/helper";
+import { s } from "../../../states/states.svelte";
 
 let moving: null | HTMLElement = null;
 
@@ -73,27 +69,7 @@ export async function drop() {
 
   moving = null;
 
-  const allCorrect =
-    s.currentAnswer.a === d.currentQuestion.a &&
-    s.currentAnswer.b === d.currentQuestion.b &&
-    s.currentAnswer.c === d.currentQuestion.c;
-  if (allCorrect) {
-    // if this question completes the tutorial, stop showing tutorial in the future:
-    if (s.settings.showTutorial && s.nowAt == 1) {
-      s.settings.showTutorial = false;
-      persistSettings();
-    }
-    // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
-    correctSound?.play();
-    const answerBar = document.getElementById("answer-bar")!;
-    answerBar.style.translate = "0 -7px";
-    await sleep(25);
-    answerBar.style.translate = "0 0";
-    await sleep(600);
-    s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
-    if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
-    else s.allDone = true;
-  }
+  await checkAnswer();
 }
 
 /**

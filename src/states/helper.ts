@@ -1,4 +1,8 @@
-import { d, s } from "./states.svelte";
+import { browser } from "$app/environment";
+import sound from "$lib/static/correct.mp3";
+import { d, persistSettings, s } from "./states.svelte";
+
+const correctSound = browser ? new Audio(sound) : null;
 
 export function sleep(milliseconds: number): Promise<number> {
   return new Promise((resolve) => {
@@ -41,4 +45,31 @@ export function restartGame() {
   }
   s.allDone = false;
   s.nowAt = 0;
+}
+
+/**
+ * Checks the if all 3 slots are currently filled with correct answers, if yes, react accordingly
+ */
+export async function checkAnswer() {
+  const allCorrect =
+    s.currentAnswer.a === d.currentQuestion.a &&
+    s.currentAnswer.b === d.currentQuestion.b &&
+    s.currentAnswer.c === d.currentQuestion.c;
+  if (allCorrect) {
+    // if this question completes the tutorial, stop showing tutorial in the future:
+    if (s.settings.showTutorial && s.nowAt == 1) {
+      s.settings.showTutorial = false;
+      persistSettings();
+    }
+    // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
+    correctSound?.play();
+    const answerBar = document.getElementById("answer-bar")!;
+    answerBar.style.translate = "0 -7px";
+    await sleep(25);
+    answerBar.style.translate = "0 0";
+    await sleep(600);
+    s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
+    if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
+    else s.allDone = true;
+  }
 }
