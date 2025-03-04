@@ -34,16 +34,14 @@
     background-color: var(--green);
     font-size: var(--number-square-font-size);
     color: #0008;
-    border: none;
+    border: 1px solid white;
     border-radius: var(--number-square-border-radius);
     transition:
       scale 40ms,
       opacity 40ms;
     /* ↓ this affects drag too */
     &:active {
-      border: 1px solid white;
       scale: 1.1;
-      opacity: 1;
     }
   }
 
