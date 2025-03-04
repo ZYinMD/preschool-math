@@ -1,7 +1,9 @@
-/* this code is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
-
 import { checkAnswer, sleep } from "../../../states/helper";
 import { s } from "../../../states/states.svelte";
+
+/* The code below is inspired by https://www.horuskol.net/blog/2020-08-15/drag-and-drop-elements-on-touch-devices/ */
+
+/* I need to make a button that can be both clicked and drag-and-dropped. I'm not using the native html drag-and-drop api because it doesn't work on touch screen. Instead I'm manually building it with outouchstart/onmousedown and ontouchmove/onmousemove, etc. But I found that a simple click would also trigger outouchstart/onmousedown and ontouchend/mouseup etc, so I decide to not use the click event at all, and handle everything in the ontouchend/mouseup event, in which a lot of code is needed just to differentiate if it had been a click or drag */
 
 let pickedUp: null | HTMLElement = null;
 
@@ -34,6 +36,7 @@ export function move(event: MouseEvent | TouchEvent) {
 
 export async function dragEnd() {
   if (!pickedUp) return;
+  // TODO: if it's been a dnd, called handleDropAfterDrag(), if it's been a click, call handleClick().
   await handleDropAfterDrag(pickedUp);
   pickedUp = null;
   await checkAnswer();
@@ -67,7 +70,11 @@ async function handleDropAfterDrag(pickedUp: HTMLElement) {
   pickedUp.style.opacity = "1";
 }
 
-function handleClick() {}
+/**
+ * Call this if the number is clicked, not dragged.
+ */
+function handleClick(element: HTMLElement) {}
+
 /**
  * helper function: checks if two elements overlap.
  */
