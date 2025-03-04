@@ -10,7 +10,7 @@
       <span class="flip">{s.nowAt + 1}</span> / {s.questionsThisGame.length}
     {/key}
   </div>
-  <div class="message">Please rotate your phone to landscape mode</div>
+
   <Hamburger />
 </div>
 
@@ -29,17 +29,6 @@
   .progress {
     grid-area: progress;
     font-size: clamp(14px, 2svw, 24px);
-  }
-  .message {
-    grid-area: message;
-    text-align: center;
-    color: tomato;
-    font-size: clamp(14px, 2svw, 24px);
-  }
-  @media (width > 500px) {
-    .message {
-      display: none;
-    }
   }
   span.flip {
     display: inline-block;

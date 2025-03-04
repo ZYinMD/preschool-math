@@ -14,6 +14,28 @@
     <Practice />
   {/if}
 </div>
+<div class="rotate-alert">Please rotate your phone to landscape mode</div>
 
 <style>
+  .rotate-alert {
+    color: tomato;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-bottom: 14%;
+    width: 100%;
+    height: 100%;
+    /* padding-bottom: 80%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    z-index: 1;
+    text-align: center;
+  }
+  @media (width > 500px) {
+    .rotate-alert {
+      display: none;
+    }
+  }
 </style>

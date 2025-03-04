@@ -18,7 +18,7 @@
   <div class="tiles-bar">
     <TilesBar {a} {b} animate={false} />
   </div>
-  <div class="message">Please rotate your phone to landscape mode</div>
+
   <div class="hint">
     {#key a}
       <span in:blur={{ duration: 400 }}>{a}</span>
@@ -80,17 +80,6 @@
     margin-bottom: clamp(0px, 7svh, 70px);
     display: flex;
     gap: 1em;
-  }
-  .message {
-    grid-area: message;
-    text-align: center;
-    color: tomato;
-    font-size: clamp(14px, 2svw, 24px);
-  }
-  @media (width > 500px) {
-    .message {
-      display: none;
-    }
   }
   .arrows {
     display: flex;
