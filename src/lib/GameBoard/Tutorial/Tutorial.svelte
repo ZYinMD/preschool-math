@@ -9,15 +9,13 @@
       <div>
         Tutorial: the answer is 3 + 2 = 5, drag 3, 2, 5 into the equation
       </div>
-    {/if}
-    {#if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c !== 12}
+    {:else if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c !== 12}
       <div>
         Tutorial 2: it's easy to see the sum is 12, because the "<span
           class="pipe">|</span
         >" means 10. Drag 12 to the right side.
       </div>
-    {/if}
-    {#if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c === 12}
+    {:else if s.nowAt === 2 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c === 12}
       <div>I'll let you figure out the rest!</div>
     {/if}
   {/if}
