@@ -24,7 +24,7 @@
       auto 1fr auto;
     align-items: end;
     width: 100%;
-    margin-bottom: clamp(5px, 2svh, 50px);
+    padding-left: 5px;
   }
   .progress {
     grid-area: progress;

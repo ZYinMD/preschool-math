@@ -30,7 +30,7 @@
 
 <style>
   .component {
-    width: 92svw;
+    width: min(92svw, (calc(220svh + 30px)));
     height: 100svh;
     display: flex;
     flex-direction: column;

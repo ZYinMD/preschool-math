@@ -23,11 +23,11 @@
   .component {
     display: grid;
     grid:
-      "only" auto
+      "only" min(50px, 10svh)
       /
       auto;
     place-items: center;
-    margin-bottom: clamp(0px, 5svh, 50px);
+    margin: clamp(0px, 3svh, 50px) 0 clamp(0px, 4svh, 50px) 0;
   }
   .component.hidden {
     visibility: hidden; /* use visibility hidden here because I don't want the layout to shift */
@@ -41,6 +41,5 @@
     width: 1px;
     height: min(calc(var(--tiles-bar-width) / 7.5), 17svh);
     background-color: silver;
-    position: fixed;
   }
 </style>
