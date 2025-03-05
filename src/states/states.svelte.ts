@@ -92,7 +92,7 @@ export const defaultSettings = {
     eight: true,
     nine: true,
   },
-  numQuestions: 15,
+  numQuestions: 10,
   maxSum: 20,
   showTutorial: true,
 };
