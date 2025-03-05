@@ -14,7 +14,7 @@
 
 <!-- @component the settings view -->
 <div class="component">
-  <section>
+  <section class="top-row">
     <button
       class="back-button"
       onclick={() => {
@@ -28,6 +28,11 @@
     >
       <ChevronIcon />
     </button>
+    {#if explainAboutChanges}
+      <div in:fly={{ duration: 100, y: 200 }} class="explain-changes">
+        Changes take effect next game
+      </div>
+    {/if}
   </section>
   <section>
     <label for="num-questions">Number of questions:</label>
@@ -133,13 +138,6 @@
     <span>{s.settings.maxSum}</span>
   </section>
   <ResetTutorial />
-  <section>
-    {#if explainAboutChanges}
-      <div in:fly={{ duration: 100, y: -200 }} class="explain-changes">
-        Changes take effect next game
-      </div>
-    {/if}
-  </section>
 </div>
 
 <style>
@@ -156,6 +154,11 @@
   section {
     margin: min(10px, 1.3svh) 0;
   }
+  .top-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
   .row-of-checkboxes {
     display: flex;
     gap: clamp(5px, 2svw, 22px);
@@ -166,6 +169,7 @@
   .row-of-checkboxes > div {
     display: flex;
     gap: 5px;
+    align-items: center;
   }
   .explain-changes {
     color: Coral;
