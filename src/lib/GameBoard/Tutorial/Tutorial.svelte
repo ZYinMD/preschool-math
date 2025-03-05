@@ -15,9 +15,11 @@
           class="pipe">|</span
         >" means 10. Drag 12 to the right side.
       </div>
-    {:else if s.nowAt === 2 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c === 12}
+    {:else if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c === 12}
       <div>I'll let you figure out the rest!</div>
     {/if}
+  {:else if s.remindToDrag === true}
+    <div>Drag numbers to the equation!</div>
   {/if}
 </div>
 

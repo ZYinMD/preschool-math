@@ -113,6 +113,7 @@ export const s = $state({
   nowAt: 0, // the current index in questionsThisGame
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
+  remindToDrag: false, // when true, show a message saying "drag numbers to the equation!" when the user keep trying to click the numbers
   settings:
     persistedUserSettings || (defaultSettings as typeof defaultSettings),
 });
