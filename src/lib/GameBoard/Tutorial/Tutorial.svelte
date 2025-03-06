@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { scale } from "svelte/transition";
   import { d, s } from "../../../states/states.svelte";
   const text = $derived.by(() => {
     if (s.remindToDrag === true) return "Drag correct number to replace pink";
@@ -7,7 +8,7 @@
       d.currentQuestion.a === 3 &&
       d.currentQuestion.b === 2
     ) {
-      return "Tutorial: the answer is 3 + 2 = 5, drag 3, 2, 5 into the equation";
+      return `Tutorial: we have 3 blue + 2 orange = 5 in total. Drag 3, 2, 5 into the equation`;
     }
     if (
       s.nowAt === 1 &&
@@ -19,16 +20,25 @@
       } else if (s.currentAnswer.b !== 4) {
         return "It's easy to see the 2nd number is 4, drag 4 into the 2nd box";
       } else {
-        return "I'll let you figure out the rest!";
+        return "You figure out the rest!";
       }
+    }
+    if (
+      s.nowAt === 2 &&
+      d.currentQuestion.a === 4 &&
+      d.currentQuestion.b === 3
+    ) {
+      return "You can also just click, try clicking 4, 3, 7";
     }
   });
 </script>
 
 <!-- @component the text of tutorial -->
-<div class="component">
-  <div>{@html text}</div>
-</div>
+{#key text}
+  <div class="component">
+    <div in:scale>{@html text}</div>
+  </div>
+{/key}
 
 <style>
   .component {

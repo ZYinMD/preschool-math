@@ -42,6 +42,7 @@ export function restartGame() {
   if (s.settings.showTutorial) {
     s.questionsThisGame[0] = [3, 2];
     s.questionsThisGame[1] = [8, 4];
+    s.questionsThisGame[2] = [4, 3];
   }
   s.allDone = false;
   s.nowAt = 0;
@@ -57,7 +58,7 @@ export async function checkAnswer() {
     s.currentAnswer.c === d.currentQuestion.c;
   if (allCorrect) {
     // if this question completes the tutorial, stop showing tutorial in the future:
-    if (s.settings.showTutorial && s.nowAt == 1) {
+    if (s.settings.showTutorial && s.nowAt == 2) {
       s.settings.showTutorial = false;
       persistSettings();
     }
