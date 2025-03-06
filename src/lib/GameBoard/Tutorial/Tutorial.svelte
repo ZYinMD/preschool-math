@@ -1,26 +1,33 @@
 <script lang="ts">
   import { d, s } from "../../../states/states.svelte";
+  const text = $derived.by(() => {
+    if (s.remindToDrag === true) return "Drag correct number to replace pink";
+    if (
+      s.nowAt === 0 &&
+      d.currentQuestion.a === 3 &&
+      d.currentQuestion.b === 2
+    ) {
+      return "Tutorial: the answer is 3 + 2 = 5, drag 3, 2, 5 into the equation";
+    }
+    if (
+      s.nowAt === 1 &&
+      d.currentQuestion.a === 8 &&
+      d.currentQuestion.b === 4
+    ) {
+      if (s.currentAnswer.c !== 12) {
+        return `The "<span class="pipe">|</span>" means 10, so the sum is 12. Drag 12 to the right side.`;
+      } else if (s.currentAnswer.b !== 4) {
+        return "It's easy to see the 2nd number is 4, drag 4 into the 2nd box";
+      } else {
+        return "I'll let you figure out the rest!";
+      }
+    }
+  });
 </script>
 
 <!-- @component the text of tutorial -->
 <div class="component">
-  {#if s.settings.showTutorial === true}
-    {#if s.nowAt === 0 && d.currentQuestion.a === 3 && d.currentQuestion.b === 2}
-      <div>
-        Tutorial: the answer is 3 + 2 = 5, drag 3, 2, 5 into the equation
-      </div>
-    {:else if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c !== 12}
-      <div>
-        Tutorial 2: it's easy to see the sum is 12, because the "<span
-          class="pipe">|</span
-        >" means 10. Drag 12 to the right side.
-      </div>
-    {:else if s.nowAt === 1 && d.currentQuestion.a === 8 && d.currentQuestion.b === 4 && s.currentAnswer.c === 12}
-      <div>I'll let you figure out the rest!</div>
-    {/if}
-  {:else if s.remindToDrag === true}
-    <div>Drag numbers to the equation!</div>
-  {/if}
+  <div>{@html text}</div>
 </div>
 
 <style>
@@ -29,11 +36,14 @@
     opacity: 0.8;
     font-size: clamp(12px, min(3.2svh, 1.5svw), 18px);
   }
-  .pipe {
-    display: inline-block;
-    color: grey;
-    font-family: Courier, sans-serif;
-    font-weight: 100;
-    transform: scaleY(2);
+  /* see https://svelte.dev/docs/svelte/@html for why :global is needed */
+  .component :global {
+    span.pipe {
+      display: inline-block;
+      color: grey;
+      font-family: Courier, sans-serif;
+      font-weight: 100;
+      transform: scaleY(2);
+    }
   }
 </style>
