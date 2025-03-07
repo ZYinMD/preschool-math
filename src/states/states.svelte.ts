@@ -111,8 +111,10 @@ export const s = $state({
   view: "game" as "game" | "settings" | "practice",
   questionsThisGame: [[0, 0]],
   nowAt: 0, // the current index in questionsThisGame
+  flashPlus1: false, // when true, show "+1" by "progress"
   allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
+
   settings:
     persistedUserSettings || (defaultSettings as typeof defaultSettings),
 });

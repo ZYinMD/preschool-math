@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { scale } from "svelte/transition";
   import { s } from "../../../states/states.svelte";
   import Hamburger from "./Hamburger.svelte";
 </script>
@@ -6,9 +7,13 @@
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
 <div class="component">
   <div class="progress">
-    Progress: {#key s.nowAt}
+    Progress:
+    {#key s.nowAt}
       <span class="flip">{s.nowAt + 1}</span> / {s.questionsThisGame.length}
     {/key}
+    {#if s.flashPlus1}
+      <span class="plus1" transition:scale>+1</span>
+    {/if}
   </div>
 
   <Hamburger />
@@ -29,6 +34,8 @@
   .progress {
     grid-area: progress;
     font-size: clamp(14px, 2svw, 24px);
+    display: flex;
+    white-space: pre;
   }
   span.flip {
     display: inline-block;
@@ -43,5 +50,14 @@
       transform: none;
       opacity: 1;
     }
+  }
+  .plus1 {
+    display: grid;
+    place-items: center;
+    height: 1.5em;
+    width: 1.5em;
+    color: white;
+    background-color: lightgreen;
+    border-radius: 50%;
   }
 </style>

@@ -62,16 +62,23 @@ export async function checkAnswer() {
       s.settings.showTutorial = false;
       persistSettings();
     }
-
     // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
     correctSound?.play();
     const answerBar = document.getElementById("answer-bar")!;
     answerBar.style.translate = "0 -7px";
     await sleep(25);
     answerBar.style.translate = "0 0";
-    await sleep(600);
+    await sleep(650);
     s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
     if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
     else s.allDone = true;
+
+    // if currently not in tutorial, show "+1"
+    if (!s.settings.showTutorial) {
+      // await sleep(100);
+      s.flashPlus1 = true;
+      await sleep(1000);
+      s.flashPlus1 = false;
+    }
   }
 }
