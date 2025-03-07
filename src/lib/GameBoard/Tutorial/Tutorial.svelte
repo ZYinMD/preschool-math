@@ -2,33 +2,25 @@
   import { scale } from "svelte/transition";
   import { d, s } from "../../../states/states.svelte";
   const text = $derived.by(() => {
-    if (s.remindToDrag === true) return "Drag correct number to replace pink";
     if (
       s.nowAt === 0 &&
       d.currentQuestion.a === 3 &&
       d.currentQuestion.b === 2
     ) {
-      return `Tutorial: we have 3 blue + 2 orange = 5 in total. Drag 3, 2, 5 into the equation`;
+      return `Tutorial: we have 3 blue + 2 orange = 5 in total, so please click 3, 2, 5!`;
     }
     if (
       s.nowAt === 1 &&
       d.currentQuestion.a === 8 &&
       d.currentQuestion.b === 4
     ) {
-      if (s.currentAnswer.c !== 12) {
-        return `The "<span class="pipe">|</span>" means 10, so the sum is 12. Drag 12 to the right side.`;
-      } else if (s.currentAnswer.b !== 4) {
+      if (s.currentAnswer.b !== 4) {
         return "It's easy to see the 2nd number is 4, drag 4 into the 2nd box";
+      } else if (s.currentAnswer.c !== 12) {
+        return `The "<span class="pipe">|</span>" means 10, so the sum must be 12. Drag 12 to the right side.`;
       } else {
-        return "You figure out the rest!";
+        return "You figure out the 1st number!";
       }
-    }
-    if (
-      s.nowAt === 2 &&
-      d.currentQuestion.a === 4 &&
-      d.currentQuestion.b === 3
-    ) {
-      return "You can also just click, try clicking 4, 3, 7";
     }
   });
 </script>
