@@ -36,7 +36,7 @@
   .component {
     color: coral;
     opacity: 0.8;
-    font-size: clamp(12px, min(3.2svh, 1.5svw), 18px);
+    font-size: clamp(12px, min(4.6svh, 2svw), 19px);
   }
   /* see https://svelte.dev/docs/svelte/@html for why :global is needed */
   .component :global {
