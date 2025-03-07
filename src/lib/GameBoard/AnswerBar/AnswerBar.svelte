@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { TransitionConfig } from "svelte/transition";
-  import Cloze from "./Cloze.svelte";
   import { sineInOut } from "svelte/easing";
+  import type { TransitionConfig } from "svelte/transition";
   import { s } from "../../../states/states.svelte";
+  import Cloze from "./Cloze.svelte";
   function rotateIn(_node: Node): TransitionConfig {
     return {
       delay: 300,
@@ -50,7 +50,6 @@
 
 <style>
   .placeholder {
-    pointer-events: none;
     display: grid;
     grid-template-areas: "only";
     place-items: center;

@@ -14,13 +14,24 @@
     return correctAnswer === playerAnswer ? "green" : "red";
   });
   const content = $derived(isEmpty ? "" : playerAnswer);
+  function handleClick() {
+    if (color === "red") {
+      s.currentAnswer[position] = 0; // remove the wrong value
+    }
+  }
 </script>
 
 <!-- @component the square box that starts empty and can be filled with a number -->
 {#key content}
-  <div class={`box ${color}`} id={`cloze-${position}`}>
+  <button
+    class={`box ${color}`}
+    id={`cloze-${position}`}
+    onmousedown={handleClick}
+    ontouchstart={handleClick}
+    disabled={color !== "red"}
+  >
     {content}
-  </div>
+  </button>
 {/key}
 
 <style>
