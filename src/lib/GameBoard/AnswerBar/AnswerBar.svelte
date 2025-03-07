@@ -19,9 +19,9 @@
       delay: 0,
       easing: sineInOut,
       css: (t, u) =>
-        `transform: translateX(${-40 * u}svw) translateY(${-30 * u}svw) rotateZ(${
+        `transform: translateX(${-30 * u}svw) translateY(${-20 * u}svw) rotateZ(${
           -140 * u
-        }deg) scale(${t}); opacity: ${t};`,
+        }deg) scale(${t}); opacity: ${t + 0.3};`,
     };
   }
 </script>
