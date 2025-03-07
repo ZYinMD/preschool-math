@@ -62,7 +62,7 @@ export async function checkAnswer() {
       s.settings.showTutorial = false;
       persistSettings();
     }
-    s.remindToDrag = false;
+
     // if the current answer has been correctly completed, animate the answer bar to make it jump, then move to the next question
     correctSound?.play();
     const answerBar = document.getElementById("answer-bar")!;

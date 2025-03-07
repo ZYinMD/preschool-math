@@ -132,7 +132,7 @@ function handleClick(element: HTMLElement) {
     s.currentAnswer.b = number;
   } else if (s.currentAnswer.c === 0) {
     s.currentAnswer.c = number;
-  } else s.remindToDrag = true; // reaching here means the users tries to click the button when there are no more empty slots
+  }
 
   putDown(element);
 }
