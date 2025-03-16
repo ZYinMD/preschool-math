@@ -1,14 +1,18 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { restartGame } from "../../states/helper";
-  import { persistSettings, s } from "../../states/states.svelte";
+  import { d, persistSettings, s } from "../../states/states.svelte";
   import ChevronIcon from "../Icons/ChevronIcon.svelte";
   import ResetTutorial from "./ResetTutorialButton.svelte";
   const { allowQuestionStartingWith } = s.settings;
+
+  // when user switched to the settings view, if in the middle of a game (not on 1st question, not all done), show the red text "Changes take effect next game.", else do nothing but when leaving the settings page, restart the game
+  const inTheMiddleOfGame = $derived(
+    d.gameStage === "playing" && s.nowAt !== 0
+  );
   let explainAboutChanges = $state(false);
   function anyChange() {
-    // if currently in the middle of a game, show the red text "Changes take effect next game." If currently at the 1st question, do nothing, but when leaving the settings page, restart the game
-    if (s.nowAt !== 0) explainAboutChanges = true;
+    if (inTheMiddleOfGame) explainAboutChanges = true;
   }
 </script>
 
@@ -18,10 +22,7 @@
     <button
       class="back-button"
       onclick={() => {
-        // if currently at the 1st question, when leaving the settings page, restart the game. It's possible that no settings have changed, but we don't care.
-        if (s.nowAt === 0) {
-          setTimeout(() => restartGame(), 0);
-        }
+        if (!inTheMiddleOfGame) setTimeout(() => restartGame(), 0);
         s.view = "game";
         persistSettings(); // persist settings
       }}
@@ -125,7 +126,7 @@
     </div>
   </section>
   <section>
-    <label for="max-sum">Maximum sum (3rd number) can be:</label>
+    <label for="max-sum">Maximum sum (the 3rd number) can be:</label>
     <br />
     <input
       id="max-sum"
