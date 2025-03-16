@@ -43,7 +43,6 @@ export function restartGame() {
   if (s.settings.showTutorial) {
     s.questionsThisGame[0] = [3, 2];
     s.questionsThisGame[1] = [8, 4];
-    s.questionsThisGame[2] = [4, 3];
   }
   s.nowAt = 0;
 }
