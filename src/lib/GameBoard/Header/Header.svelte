@@ -1,7 +1,16 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
-  import { s } from "../../../states/states.svelte";
+  import { d, s } from "../../../states/states.svelte";
   import Hamburger from "./Hamburger.svelte";
+  const secondNumber = $derived.by(() => {
+    if (d.gameStage === "no_questions" || d.gameStage === "not_started") {
+      return 0;
+    } else return s.questionsThisGame.length;
+  });
+  const firstNumber = $derived.by(() => {
+    if (s.nowAt + 1 > secondNumber) return secondNumber;
+    return s.nowAt + 1;
+  });
 </script>
 
 <!-- @component the top bar that shows things like "7 / 20", "New", etc -->
@@ -9,7 +18,7 @@
   <div class="progress">
     Progress:
     {#key s.nowAt}
-      <span class="flip">{s.nowAt + 1}</span> / {s.questionsThisGame.length}
+      <span class="flip">{firstNumber}</span> / {secondNumber}
     {/key}
     {#if s.flashPlus1}
       <span class="plus1" transition:scale>+1</span>

@@ -33,6 +33,7 @@ function shuffle(array: any[]) {
 }
 
 export function restartGame() {
+  if (d.gameStage === "no_questions") return;
   s.currentAnswer = { a: 0, b: 0, c: 0 };
   // randomly pick x questions from derived.allowedQuestions, where x is states.settings.numQuestions, and put them in states.questionsThisGame
   s.questionsThisGame = shuffle(d.questionPool).slice(
@@ -44,7 +45,6 @@ export function restartGame() {
     s.questionsThisGame[1] = [8, 4];
     s.questionsThisGame[2] = [4, 3];
   }
-  s.allDone = false;
   s.nowAt = 0;
 }
 
@@ -74,8 +74,7 @@ export async function checkAnswer() {
       answerBar.style.translate = "0 0";
       await sleep(650);
       s.currentAnswer = { a: 0, b: 0, c: 0 }; // reset the answer
-      if (s.nowAt < s.questionsThisGame.length - 1) s.nowAt++;
-      else s.allDone = true;
+      s.nowAt++;
 
       // if currently not in tutorial, show "+1"
       if (!s.settings.showTutorial) {

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { sineInOut } from "svelte/easing";
   import type { TransitionConfig } from "svelte/transition";
-  import { s } from "../../../states/states.svelte";
+  import { d, s } from "../../../states/states.svelte";
   import Cloze from "./Cloze.svelte";
   function rotateIn(_node: Node): TransitionConfig {
     return {
@@ -32,7 +32,8 @@
     <div
       class="answer-bar"
       id="answer-bar"
-      class:hidden={s.allDone}
+      class:hidden={d.gameStage === "no_questions" ||
+        d.gameStage === "all_done"}
       in:rotateIn
       out:flyAway
     >
@@ -43,8 +44,13 @@
       <Cloze position="c" />
     </div>
   {/key}
-  {#if s.allDone}
+  {#if d.gameStage === "all_done"}
     <div class="all-done-message">All done!</div>
+  {/if}
+  {#if d.gameStage === "no_questions"}
+    <div class="no-questions-message">
+      No questions. Please change your settings.
+    </div>
   {/if}
 </div>
 
@@ -71,7 +77,8 @@
     font-size: calc(var(--number-square-font-size) * 1.4);
     font-family: Courier, monospace;
   }
-  .all-done-message {
+  .all-done-message,
+  .no-questions-message {
     font-size: 18px;
     grid-area: only;
   }

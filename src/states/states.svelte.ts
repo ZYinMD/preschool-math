@@ -112,11 +112,10 @@ export const s = $state({
   questionsThisGame: [[0, 0]],
   nowAt: 0, // the current index in questionsThisGame
   flashPlus1: false, // when true, show "+1" by "progress"
-  allDone: false, // when true, show "all done" screen. This happens after the last question is answered after nowAt has been incremented to questionsThisGame.length - 1
   currentAnswer: { a: 0, b: 0, c: 0 }, // the user input value of a b c. Starts with 0 as being empty
 
-  settings:
-    persistedUserSettings || (defaultSettings as typeof defaultSettings),
+  settings: (persistedUserSettings ||
+    defaultSettings) as typeof defaultSettings,
 });
 
 export function persistSettings() {
@@ -127,9 +126,12 @@ export function persistSettings() {
 }
 
 const currentQuestion = $derived.by(() => {
-  const [a, b] = s.questionsThisGame[s.nowAt];
-  const c = a + b;
-  return { a, b, c };
+  const currentQuestion = s.questionsThisGame[s.nowAt];
+  if (currentQuestion) {
+    const [a, b] = currentQuestion;
+    const c = a + b;
+    return { a, b, c };
+  } else return { a: 0, b: 0, c: 0 };
 });
 
 /**
@@ -146,6 +148,13 @@ const questionPool = $derived.by(() => {
   return result;
 });
 
+const gameStage = $derived.by(() => {
+  if (questionPool.length === 0) return "no_questions"; // happens when user restricts settings too much that no question is eligible
+  if (JSON.stringify(s.questionsThisGame) === "[[0,0]]") return "not_started"; // a fleeting moment after the games loads, but before restartGame() is called, in this moment the questions of this game hasn't been put together (it's the job of restartGame()). The $effect of the game board is responsible to call restartGame() in this stage, which will put together the the questions of the game and show the animation of question1.
+  if (s.nowAt < s.questionsThisGame.length) return "playing";
+  return "all_done";
+});
+
 /**
  * d = "global derived states"
  */
@@ -155,6 +164,9 @@ export const d = {
   },
   get currentQuestion() {
     return currentQuestion;
+  },
+  get gameStage() {
+    return gameStage;
   },
 };
 
