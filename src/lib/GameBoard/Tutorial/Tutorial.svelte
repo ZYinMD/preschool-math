@@ -2,6 +2,8 @@
   import { scale } from "svelte/transition";
   import { d, s } from "../../../states/states.svelte";
   const text = $derived.by(() => {
+    if (!s.settings.showTutorial) return null;
+    if (d.gameStage !== "playing") return null;
     if (
       s.nowAt === 0 &&
       d.currentQuestion.a === 3 &&
@@ -22,15 +24,18 @@
         return "You figure out the 1st number!";
       }
     }
+    return null;
   });
 </script>
 
 <!-- @component the text of tutorial -->
-{#key text}
-  <div class="component">
-    <div in:scale>{@html text}</div>
-  </div>
-{/key}
+{#if text}
+  {#key text}
+    <div class="component">
+      <div in:scale>{@html text}</div>
+    </div>
+  {/key}
+{/if}
 
 <style>
   .component {
