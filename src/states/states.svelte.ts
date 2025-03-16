@@ -83,8 +83,8 @@ export const allQuestionFlat = Object.values(allQuestions).flat();
 export const defaultSettings = {
   schemaVersion: 1, // if the shape of this object gets changed in the future, increment this number
   allowQuestionStartingWith: {
-    two: true,
-    three: true,
+    two: false,
+    three: false,
     four: true,
     five: true,
     six: true,
